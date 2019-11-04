@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.esports.mapper.BrandMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.esports.beans.Brand">
+    <!--@mbg.generated-->
+    <!--@Table brand-->
+    <id column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+    <result column="brand_logo" jdbcType="VARCHAR" property="brandLogo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    brand_id, brand_name, brand_logo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from brand
+    where brand_id = #{brandId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from brand
+    where brand_id = #{brandId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="brand_id" keyProperty="brandId" parameterType="com.rimi.esports.beans.Brand" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into brand (brand_name, brand_logo)
+    values (#{brandName,jdbcType=VARCHAR}, #{brandLogo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="brand_id" keyProperty="brandId" parameterType="com.rimi.esports.beans.Brand" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into brand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brandName != null">
+        brand_name,
+      </if>
+      <if test="brandLogo != null">
+        brand_logo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brandName != null">
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandLogo != null">
+        #{brandLogo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.esports.beans.Brand">
+    <!--@mbg.generated-->
+    update brand
+    <set>
+      <if test="brandName != null">
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandLogo != null">
+        brand_logo = #{brandLogo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.esports.beans.Brand">
+    <!--@mbg.generated-->
+    update brand
+    set brand_name = #{brandName,jdbcType=VARCHAR},
+      brand_logo = #{brandLogo,jdbcType=VARCHAR}
+    where brand_id = #{brandId,jdbcType=INTEGER}
+  </update>
+</mapper>

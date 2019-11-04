@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.esports.mapper.ShopMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.esports.beans.Shop">
+    <!--@mbg.generated-->
+    <!--@Table shop-->
+    <id column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="shop_username" jdbcType="VARCHAR" property="shopUsername" />
+    <result column="shop_choose" jdbcType="VARCHAR" property="shopChoose" />
+    <result column="shop_goodsId" jdbcType="INTEGER" property="shopGoodsId" />
+    <result column="shop_goodsNum" jdbcType="INTEGER" property="shopGoodsNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    shop_id, shop_username, shop_choose, shop_goodsId, shop_goodsNum
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from shop
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="shop_id" keyProperty="shopId" parameterType="com.rimi.esports.beans.Shop" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into shop (shop_username, shop_choose, shop_goodsId, 
+      shop_goodsNum)
+    values (#{shopUsername,jdbcType=VARCHAR}, #{shopChoose,jdbcType=VARCHAR}, #{shopGoodsId,jdbcType=INTEGER},
+      #{shopGoodsNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="shop_id" keyProperty="shopId" parameterType="com.rimi.esports.beans.Shop" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopUsername != null">
+        shop_username,
+      </if>
+      <if test="shopChoose != null">
+        shop_choose,
+      </if>
+      <if test="shopGoodsId != null">
+        shop_goodsId,
+      </if>
+      <if test="shopGoodsNum != null">
+        shop_goodsNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopUsername != null">
+        #{shopUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="shopChoose != null">
+        #{shopChoose,jdbcType=VARCHAR},
+      </if>
+      <if test="shopGoodsId != null">
+        #{shopGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopGoodsNum != null">
+        #{shopGoodsNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.esports.beans.Shop">
+    <!--@mbg.generated-->
+    update shop
+    <set>
+      <if test="shopUsername != null">
+        shop_username = #{shopUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="shopChoose != null">
+        shop_choose = #{shopChoose,jdbcType=VARCHAR},
+      </if>
+      <if test="shopGoodsId != null">
+        shop_goodsId = #{shopGoodsId,jdbcType=INTEGER},
+      </if>
+      <if test="shopGoodsNum != null">
+        shop_goodsNum = #{shopGoodsNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.esports.beans.Shop">
+    <!--@mbg.generated-->
+    update shop
+    set shop_username = #{shopUsername,jdbcType=VARCHAR},
+      shop_choose = #{shopChoose,jdbcType=VARCHAR},
+      shop_goodsId = #{shopGoodsId,jdbcType=INTEGER},
+      shop_goodsNum = #{shopGoodsNum,jdbcType=INTEGER}
+    where shop_id = #{shopId,jdbcType=INTEGER}
+  </update>
+</mapper>
