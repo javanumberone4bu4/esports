@@ -27,14 +27,4 @@ public class UserMapperTest {
         User user = userMapper.selectByUserTel("18780811904");
         System.out.println(user);
     }
-
-    @Test
-    public void insert() {
-        User user=new User();
-        user.setUserTel("18780811904");
-        user.setPassword("123");
-        int insert = userMapper.insert(user);
-        Assert.assertEquals(1,insert);
-
-    }
 }

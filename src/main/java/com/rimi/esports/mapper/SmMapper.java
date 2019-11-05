@@ -19,4 +19,8 @@ public interface SmMapper {
     int updateByPrimaryKeySelective(Sm record);
 
     int updateByPrimaryKey(Sm record);
+
+    int updateByTelephone(Sm sm);
+
+    Sm selectByTelephone(String telephone);
 }

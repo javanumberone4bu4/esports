@@ -2,6 +2,7 @@ package com.rimi.esports.service;
 
 import com.rimi.esports.beans.User;
 import com.rimi.esports.common.Result;
+import com.rimi.esports.common.ResultData;
 import com.rimi.esports.vo.UserVo;
 
 
@@ -13,9 +14,10 @@ import java.math.BigDecimal;
  */
 public interface IUserService {
     Result selectByUserTel(String userTel);
-    Result insert(User user,String number);
-    Result selectByUserTelAndPassword(UserVo vo);
+    ResultData insert(User user, String number);
+    ResultData getNum(String telephone);
+    ResultData selectByUserTelAndPassword(UserVo vo);
     Result updatePassword(UserVo vo);
-    Result findPassword(UserVo vo,String number);
+    ResultData findPassword(UserVo vo,String number);
     Result updateUserMoney(String sourceUserTel, String targetUserTel, BigDecimal userMoney);
 }

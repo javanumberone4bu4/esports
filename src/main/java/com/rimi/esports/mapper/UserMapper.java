@@ -21,7 +21,7 @@ public interface UserMapper {
      * 注册成功保存数据
      * @return 受影响行数
      */
-    int insert(User user);
+    int insertSelective(User user);
 
     /**
      * 登录时判断账号密码是否正确

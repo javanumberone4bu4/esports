@@ -175,4 +175,44 @@
       telephone = #{telephone,jdbcType=VARCHAR}
     where sm_id = #{smId,jdbcType=INTEGER}
   </update>
+    <update id="updateByTelephone">
+        update sm
+        <set>
+            <if test="smName != null">
+                sm_name = #{smName,jdbcType=VARCHAR},
+            </if>
+            <if test="smRealName != null">
+                sm_realName = #{smRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="smEmail != null">
+                sm_email = #{smEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="smSex != null">
+                sm_sex = #{smSex,jdbcType=VARCHAR},
+            </if>
+            <if test="smAge != null">
+                sm_age = #{smAge,jdbcType=INTEGER},
+            </if>
+            <if test="smJob != null">
+                sm_job = #{smJob,jdbcType=VARCHAR},
+            </if>
+            <if test="smHobby != null">
+                sm_hobby = #{smHobby,jdbcType=VARCHAR},
+            </if>
+            <if test="smAddress != null">
+                sm_address = #{smAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="smImage != null">
+                sm_image = #{smImage,jdbcType=VARCHAR},
+            </if>
+          <if test="smMark != null">
+            sm_mark = #{smMark,jdbcType=INTEGER},
+          </if>
+        </set>
+        where telephone = #{telephone,jdbcType=VARCHAR}
+    </update>
+  <select id="selectByTelephone" resultMap="BaseResultMap">
+    select * from sm where telephone=#{telephone}
+  </select>
+
 </mapper>

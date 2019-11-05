@@ -1,9 +1,8 @@
 package com.rimi.esports.service.impl;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.rimi.esports.beans.User;
-import com.rimi.esports.common.DefaultResult;
-import com.rimi.esports.common.Result;
-import com.rimi.esports.common.ResultCode;
+import com.rimi.esports.common.*;
 import com.rimi.esports.mapper.UserMapper;
 import com.rimi.esports.service.IUserService;
 import com.rimi.esports.util.SendMessageUtils;
@@ -13,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Wang Xiaoping
@@ -22,7 +23,9 @@ import java.util.Date;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements IUserService {
+    private List list;
     private  UserMapper userMapper;
+    private int num=(int)(Math.random()*900000+100000);
 
     public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
@@ -39,46 +42,76 @@ public class UserServiceImpl implements IUserService {
 
 
     @Override
-    public Result insert(User user,String number) {
+    public ResultData insert(User user, String number) {
         //Date date=new Date();
         //String date1 = new SimpleDateFormat().format(date);
-        int num=(int) Math.random()*900000+100000;
-        SendMessageUtils.sendMessage(user.getUserTel(),String.valueOf(num));
+        //int num=(int)(Math.random()*900000+100000);
+        try {
+            SendMessageUtils.sendMessage(user.getUserTel(),String.valueOf(num));
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
         if(Integer.parseInt(number)==num) {
-            int insert = userMapper.insert(user);
+            int insert = userMapper.insertSelective(user);
             if (insert > 0) {
-                return new DefaultResult(ResultCode.SUCCESS);
+                list=new ArrayList();
+                list.add(user);
+                list.add(num);
+                return new DefaultResultData(list);
             }else{
-                return new DefaultResult(ResultCode.FAIL);
+                list=new ArrayList();
+                list.add(user);
+                list.add(num);
+                return new DefaultResultData(list);
             }
         }
-        return new DefaultResult(ResultCode.FAIL);
+        list=new ArrayList();
+        list.add(user);
+        list.add(num);
+        return new DefaultResultData(list);
     }
 
     @Override
-    public Result selectByUserTelAndPassword(UserVo vo) {
+    public ResultData selectByUserTelAndPassword(UserVo vo) {
         User user = userMapper.selectByUserTelAndPassword(vo.getUserTel(), vo.getPassword());
         if(user!=null){
-            return new DefaultResult(ResultCode.SUCCESS);
+            list=new ArrayList();
+            list.add(vo);
+            return new DefaultResultData(vo);
         }
-        return new DefaultResult(ResultCode.FAIL);
+     list=new ArrayList();
+        list.add(vo);
+        return new DefaultResultData(vo);
     }
 
     @Override
-    public Result findPassword(UserVo vo, String number) {
+    public ResultData findPassword(UserVo vo, String number) {
         //Date date=new Date();
         //String date1 = new SimpleDateFormat().format(date);
-        int num=(int) Math.random()*900000+100000;
-        SendMessageUtils.sendMessage(vo.getUserTel(),String.valueOf(num));
+        //int num=(int) (Math.random()*900000+100000);
+        try {
+            SendMessageUtils.sendMessage(vo.getUserTel(),String.valueOf(num));
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
         if(num==Integer.parseInt(number)) {
             int i = userMapper.updatePassword(vo.getUserTel(), vo.getPassword());
             if (i > 0) {
-                return new DefaultResult(ResultCode.SUCCESS);
+                list=new ArrayList();
+                list.add(vo);
+                list.add(num);
+                return new DefaultResultData(list);
             }else {
-                return new DefaultResult((ResultCode.FAIL));
+                list=new ArrayList();
+                list.add(vo);
+                list.add(num);
+                return new DefaultResultData(list);
             }
         }
-        return new DefaultResult((ResultCode.FAIL));
+        list=new ArrayList();
+        list.add(vo);
+        list.add(num);
+        return new DefaultResultData(list);
     }
 
     @Override
@@ -119,5 +152,15 @@ public class UserServiceImpl implements IUserService {
         return new DefaultResult(ResultCode.SUCCESS);
     }
 
-
+    @Override
+    public ResultData getNum(String telephone) {
+        try {
+            SendMessageUtils.sendMessage(telephone,String.valueOf(num));
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+      list=new ArrayList();
+        list.add(String.valueOf(num));
+        return new DefaultResultData(list);
+    }
 }

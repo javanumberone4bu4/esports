@@ -6,12 +6,45 @@
         <result column="user_tel" property="userTel" />
         <result column="password" property="password" />
         <result column="user_money" property="userMoney" />
+        <result column="openId" property="openId" />
     </resultMap>
     <select id="selectByUserTel" resultMap="baseResultMap">
         select * from user where user_tel=#{userTel}
     </select>
     <insert id="insert" useGeneratedKeys="true" keyProperty="userId">
-        insert into user(user_tel, password) values(#{userTel},#{password})
+        insert into user(user_tel, password,user_money,openId) values(#{userTel},#{password},#{userMoney},#{openId})
+    </insert>
+    <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.rimi.esports.beans.User" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userTel != null">
+                user_tel,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="userMoney != null">
+                user_money,
+            </if>
+            <if test="openId != null">
+                openId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userTel != null">
+                #{userTel,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userMoney != null">
+                #{userMoney,jdbcType=DECIMAL},
+            </if>
+            <if test="openId != null">
+                #{openId,jdbcType=VARCHAR},
+            </if>
+        </trim>
     </insert>
     <select id="selectByUserTelAndPassword" resultType="com.rimi.esports.beans.User">
         select * from user where user_tel=#{userTel} and password=#{password}
