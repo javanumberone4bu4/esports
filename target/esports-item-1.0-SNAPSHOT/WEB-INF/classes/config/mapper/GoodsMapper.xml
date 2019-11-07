@@ -9,16 +9,16 @@
     <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
     <result column="goods_photo" jdbcType="VARCHAR" property="goodsPhoto" />
     <result column="goods_price" jdbcType="DOUBLE" property="goodsPrice" />
-    <result column="goods_brandId" jdbcType="INTEGER" property="goodsBrandId" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
     <result column="goods_classify" jdbcType="VARCHAR" property="goodsClassify" />
-    <result column="goods_showTime" jdbcType="VARCHAR" property="goodsShowTime" />
+    <result column="goods_showTime" jdbcType="VARCHAR" property="goodsShowtime" />
     <result column="goods_description" jdbcType="VARCHAR" property="goodsDescription" />
-    <result column="goods_upTime" jdbcType="VARCHAR" property="goodsUpTime" />
+    <result column="goods_upTime" jdbcType="VARCHAR" property="goodsUptime" />
     <result column="goods_location" jdbcType="VARCHAR" property="goodsLocation" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    goods_id, goods_source, goods_name, goods_photo, goods_price, goods_brandId, goods_classify, 
+    goods_id, goods_source, goods_name, goods_photo, goods_price, brand_id, goods_classify, 
     goods_showTime, goods_description, goods_upTime, goods_location
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -36,12 +36,12 @@
   <insert id="insert" keyColumn="goods_id" keyProperty="goodsId" parameterType="com.rimi.esports.beans.Goods" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into goods (goods_source, goods_name, goods_photo, 
-      goods_price, goods_brandId, goods_classify, 
+      goods_price, brand_id, goods_classify, 
       goods_showTime, goods_description, goods_upTime, 
       goods_location)
     values (#{goodsSource,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{goodsPhoto,jdbcType=VARCHAR}, 
-      #{goodsPrice,jdbcType=DOUBLE}, #{goodsBrandId,jdbcType=INTEGER}, #{goodsClassify,jdbcType=VARCHAR},
-      #{goodsShowTime,jdbcType=VARCHAR}, #{goodsDescription,jdbcType=VARCHAR}, #{goodsUpTime,jdbcType=VARCHAR},
+      #{goodsPrice,jdbcType=DOUBLE}, #{brandId,jdbcType=INTEGER}, #{goodsClassify,jdbcType=VARCHAR}, 
+      #{goodsShowtime,jdbcType=VARCHAR}, #{goodsDescription,jdbcType=VARCHAR}, #{goodsUptime,jdbcType=VARCHAR}, 
       #{goodsLocation,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="goods_id" keyProperty="goodsId" parameterType="com.rimi.esports.beans.Goods" useGeneratedKeys="true">
@@ -60,19 +60,19 @@
       <if test="goodsPrice != null">
         goods_price,
       </if>
-      <if test="goodsBrandId != null">
-        goods_brandId,
+      <if test="brandId != null">
+        brand_id,
       </if>
       <if test="goodsClassify != null">
         goods_classify,
       </if>
-      <if test="goodsShowTime != null">
+      <if test="goodsShowtime != null">
         goods_showTime,
       </if>
       <if test="goodsDescription != null">
         goods_description,
       </if>
-      <if test="goodsUpTime != null">
+      <if test="goodsUptime != null">
         goods_upTime,
       </if>
       <if test="goodsLocation != null">
@@ -92,20 +92,20 @@
       <if test="goodsPrice != null">
         #{goodsPrice,jdbcType=DOUBLE},
       </if>
-      <if test="goodsBrandId != null">
-        #{goodsBrandId,jdbcType=INTEGER},
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
       </if>
       <if test="goodsClassify != null">
         #{goodsClassify,jdbcType=VARCHAR},
       </if>
-      <if test="goodsShowTime != null">
-        #{goodsShowTime,jdbcType=VARCHAR},
+      <if test="goodsShowtime != null">
+        #{goodsShowtime,jdbcType=VARCHAR},
       </if>
       <if test="goodsDescription != null">
         #{goodsDescription,jdbcType=VARCHAR},
       </if>
-      <if test="goodsUpTime != null">
-        #{goodsUpTime,jdbcType=VARCHAR},
+      <if test="goodsUptime != null">
+        #{goodsUptime,jdbcType=VARCHAR},
       </if>
       <if test="goodsLocation != null">
         #{goodsLocation,jdbcType=VARCHAR},
@@ -128,20 +128,20 @@
       <if test="goodsPrice != null">
         goods_price = #{goodsPrice,jdbcType=DOUBLE},
       </if>
-      <if test="goodsBrandId != null">
-        goods_brandId = #{goodsBrandId,jdbcType=INTEGER},
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
       </if>
       <if test="goodsClassify != null">
         goods_classify = #{goodsClassify,jdbcType=VARCHAR},
       </if>
-      <if test="goodsShowTime != null">
-        goods_showTime = #{goodsShowTime,jdbcType=VARCHAR},
+      <if test="goodsShowtime != null">
+        goods_showTime = #{goodsShowtime,jdbcType=VARCHAR},
       </if>
       <if test="goodsDescription != null">
         goods_description = #{goodsDescription,jdbcType=VARCHAR},
       </if>
-      <if test="goodsUpTime != null">
-        goods_upTime = #{goodsUpTime,jdbcType=VARCHAR},
+      <if test="goodsUptime != null">
+        goods_upTime = #{goodsUptime,jdbcType=VARCHAR},
       </if>
       <if test="goodsLocation != null">
         goods_location = #{goodsLocation,jdbcType=VARCHAR},
@@ -156,11 +156,11 @@
       goods_name = #{goodsName,jdbcType=VARCHAR},
       goods_photo = #{goodsPhoto,jdbcType=VARCHAR},
       goods_price = #{goodsPrice,jdbcType=DOUBLE},
-      goods_brandId = #{goodsBrandId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
       goods_classify = #{goodsClassify,jdbcType=VARCHAR},
-      goods_showTime = #{goodsShowTime,jdbcType=VARCHAR},
+      goods_showTime = #{goodsShowtime,jdbcType=VARCHAR},
       goods_description = #{goodsDescription,jdbcType=VARCHAR},
-      goods_upTime = #{goodsUpTime,jdbcType=VARCHAR},
+      goods_upTime = #{goodsUptime,jdbcType=VARCHAR},
       goods_location = #{goodsLocation,jdbcType=VARCHAR}
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.esports.mapper.MarkMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.esports.beans.Mark">
+    <!--@mbg.generated-->
+    <!--@Table mark-->
+    <id column="mark_id" jdbcType="INTEGER" property="markId" />
+    <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
+    <result column="mark_score" jdbcType="INTEGER" property="markScore" />
+    <result column="mark_source" jdbcType="VARCHAR" property="markSource" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    mark_id, user_tel, mark_score, mark_source
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from mark
+    where mark_id = #{markId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from mark
+    where mark_id = #{markId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="mark_id" keyProperty="markId" parameterType="com.rimi.esports.beans.Mark" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into mark (user_tel, mark_score, mark_source
+      )
+    values (#{userTel,jdbcType=VARCHAR}, #{markScore,jdbcType=INTEGER}, #{markSource,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="mark_id" keyProperty="markId" parameterType="com.rimi.esports.beans.Mark" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into mark
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userTel != null">
+        user_tel,
+      </if>
+      <if test="markScore != null">
+        mark_score,
+      </if>
+      <if test="markSource != null">
+        mark_source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userTel != null">
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="markScore != null">
+        #{markScore,jdbcType=INTEGER},
+      </if>
+      <if test="markSource != null">
+        #{markSource,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.esports.beans.Mark">
+    <!--@mbg.generated-->
+    update mark
+    <set>
+      <if test="userTel != null">
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="markScore != null">
+        mark_score = #{markScore,jdbcType=INTEGER},
+      </if>
+      <if test="markSource != null">
+        mark_source = #{markSource,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mark_id = #{markId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.esports.beans.Mark">
+    <!--@mbg.generated-->
+    update mark
+    set user_tel = #{userTel,jdbcType=VARCHAR},
+      mark_score = #{markScore,jdbcType=INTEGER},
+      mark_source = #{markSource,jdbcType=VARCHAR}
+    where mark_id = #{markId,jdbcType=INTEGER}
+  </update>
+</mapper>

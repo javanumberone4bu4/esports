@@ -5,24 +5,24 @@
     <!--@mbg.generated-->
     <!--@Table orders-->
     <id column="orders_id" jdbcType="INTEGER" property="ordersId" />
-    <result column="orders_username" jdbcType="VARCHAR" property="ordersUsername" />
+    <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
     <result column="orders_num" jdbcType="VARCHAR" property="ordersNum" />
     <result column="orders_time" jdbcType="VARCHAR" property="ordersTime" />
     <result column="orders_sum" jdbcType="DECIMAL" property="ordersSum" />
     <result column="orders_status" jdbcType="VARCHAR" property="ordersStatus" />
-    <result column="orders_getMethod" jdbcType="VARCHAR" property="ordersGetMethod" />
+    <result column="orders_getMethod" jdbcType="VARCHAR" property="ordersGetmethod" />
     <result column="orders_money" jdbcType="DECIMAL" property="ordersMoney" />
     <result column="orders_pay" jdbcType="VARCHAR" property="ordersPay" />
-    <result column="orders_getName" jdbcType="VARCHAR" property="ordersGetName" />
-    <result column="orders_getAddress" jdbcType="VARCHAR" property="ordersGetAddress" />
-    <result column="orders_getPhone" jdbcType="VARCHAR" property="ordersGetPhone" />
-    <result column="orders_getScore" jdbcType="INTEGER" property="ordersGetScore" />
-    <result column="orders_expressNum" jdbcType="VARCHAR" property="ordersExpressNum" />
-    <result column="orders_getTime" jdbcType="VARCHAR" property="ordersGetTime" />
+    <result column="orders_getName" jdbcType="VARCHAR" property="ordersGetname" />
+    <result column="orders_getAddress" jdbcType="VARCHAR" property="ordersGetaddress" />
+    <result column="orders_getPhone" jdbcType="VARCHAR" property="ordersGetphone" />
+    <result column="orders_getScore" jdbcType="INTEGER" property="ordersGetscore" />
+    <result column="orders_expressNum" jdbcType="VARCHAR" property="ordersExpressnum" />
+    <result column="orders_getTime" jdbcType="VARCHAR" property="ordersGettime" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    orders_id, orders_username, orders_num, orders_time, orders_sum, orders_status, orders_getMethod, 
+    orders_id, user_tel, orders_num, orders_time, orders_sum, orders_status, orders_getMethod, 
     orders_money, orders_pay, orders_getName, orders_getAddress, orders_getPhone, orders_getScore, 
     orders_expressNum, orders_getTime
   </sql>
@@ -40,23 +40,23 @@
   </delete>
   <insert id="insert" keyColumn="orders_id" keyProperty="ordersId" parameterType="com.rimi.esports.beans.Orders" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into orders (orders_username, orders_num, orders_time, 
+    insert into orders (user_tel, orders_num, orders_time, 
       orders_sum, orders_status, orders_getMethod, 
       orders_money, orders_pay, orders_getName, 
       orders_getAddress, orders_getPhone, orders_getScore, 
       orders_expressNum, orders_getTime)
-    values (#{ordersUsername,jdbcType=VARCHAR}, #{ordersNum,jdbcType=VARCHAR}, #{ordersTime,jdbcType=VARCHAR}, 
-      #{ordersSum,jdbcType=DECIMAL}, #{ordersStatus,jdbcType=VARCHAR}, #{ordersGetMethod,jdbcType=VARCHAR},
-      #{ordersMoney,jdbcType=DECIMAL}, #{ordersPay,jdbcType=VARCHAR}, #{ordersGetName,jdbcType=VARCHAR},
-      #{ordersGetAddress,jdbcType=VARCHAR}, #{ordersGetPhone,jdbcType=VARCHAR}, #{ordersGetScore,jdbcType=INTEGER},
-      #{ordersExpressNum,jdbcType=VARCHAR}, #{ordersGetTime,jdbcType=VARCHAR})
+    values (#{userTel,jdbcType=VARCHAR}, #{ordersNum,jdbcType=VARCHAR}, #{ordersTime,jdbcType=VARCHAR}, 
+      #{ordersSum,jdbcType=DECIMAL}, #{ordersStatus,jdbcType=VARCHAR}, #{ordersGetmethod,jdbcType=VARCHAR}, 
+      #{ordersMoney,jdbcType=DECIMAL}, #{ordersPay,jdbcType=VARCHAR}, #{ordersGetname,jdbcType=VARCHAR}, 
+      #{ordersGetaddress,jdbcType=VARCHAR}, #{ordersGetphone,jdbcType=VARCHAR}, #{ordersGetscore,jdbcType=INTEGER}, 
+      #{ordersExpressnum,jdbcType=VARCHAR}, #{ordersGettime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="orders_id" keyProperty="ordersId" parameterType="com.rimi.esports.beans.Orders" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into orders
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="ordersUsername != null">
-        orders_username,
+      <if test="userTel != null">
+        user_tel,
       </if>
       <if test="ordersNum != null">
         orders_num,
@@ -70,7 +70,7 @@
       <if test="ordersStatus != null">
         orders_status,
       </if>
-      <if test="ordersGetMethod != null">
+      <if test="ordersGetmethod != null">
         orders_getMethod,
       </if>
       <if test="ordersMoney != null">
@@ -79,28 +79,28 @@
       <if test="ordersPay != null">
         orders_pay,
       </if>
-      <if test="ordersGetName != null">
+      <if test="ordersGetname != null">
         orders_getName,
       </if>
-      <if test="ordersGetAddress != null">
+      <if test="ordersGetaddress != null">
         orders_getAddress,
       </if>
-      <if test="ordersGetPhone != null">
+      <if test="ordersGetphone != null">
         orders_getPhone,
       </if>
-      <if test="ordersGetScore != null">
+      <if test="ordersGetscore != null">
         orders_getScore,
       </if>
-      <if test="ordersExpressNum != null">
+      <if test="ordersExpressnum != null">
         orders_expressNum,
       </if>
-      <if test="ordersGetTime != null">
+      <if test="ordersGettime != null">
         orders_getTime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="ordersUsername != null">
-        #{ordersUsername,jdbcType=VARCHAR},
+      <if test="userTel != null">
+        #{userTel,jdbcType=VARCHAR},
       </if>
       <if test="ordersNum != null">
         #{ordersNum,jdbcType=VARCHAR},
@@ -114,8 +114,8 @@
       <if test="ordersStatus != null">
         #{ordersStatus,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetMethod != null">
-        #{ordersGetMethod,jdbcType=VARCHAR},
+      <if test="ordersGetmethod != null">
+        #{ordersGetmethod,jdbcType=VARCHAR},
       </if>
       <if test="ordersMoney != null">
         #{ordersMoney,jdbcType=DECIMAL},
@@ -123,23 +123,23 @@
       <if test="ordersPay != null">
         #{ordersPay,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetName != null">
-        #{ordersGetName,jdbcType=VARCHAR},
+      <if test="ordersGetname != null">
+        #{ordersGetname,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetAddress != null">
-        #{ordersGetAddress,jdbcType=VARCHAR},
+      <if test="ordersGetaddress != null">
+        #{ordersGetaddress,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetPhone != null">
-        #{ordersGetPhone,jdbcType=VARCHAR},
+      <if test="ordersGetphone != null">
+        #{ordersGetphone,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetScore != null">
-        #{ordersGetScore,jdbcType=INTEGER},
+      <if test="ordersGetscore != null">
+        #{ordersGetscore,jdbcType=INTEGER},
       </if>
-      <if test="ordersExpressNum != null">
-        #{ordersExpressNum,jdbcType=VARCHAR},
+      <if test="ordersExpressnum != null">
+        #{ordersExpressnum,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetTime != null">
-        #{ordersGetTime,jdbcType=VARCHAR},
+      <if test="ordersGettime != null">
+        #{ordersGettime,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -147,8 +147,8 @@
     <!--@mbg.generated-->
     update orders
     <set>
-      <if test="ordersUsername != null">
-        orders_username = #{ordersUsername,jdbcType=VARCHAR},
+      <if test="userTel != null">
+        user_tel = #{userTel,jdbcType=VARCHAR},
       </if>
       <if test="ordersNum != null">
         orders_num = #{ordersNum,jdbcType=VARCHAR},
@@ -162,8 +162,8 @@
       <if test="ordersStatus != null">
         orders_status = #{ordersStatus,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetMethod != null">
-        orders_getMethod = #{ordersGetMethod,jdbcType=VARCHAR},
+      <if test="ordersGetmethod != null">
+        orders_getMethod = #{ordersGetmethod,jdbcType=VARCHAR},
       </if>
       <if test="ordersMoney != null">
         orders_money = #{ordersMoney,jdbcType=DECIMAL},
@@ -171,23 +171,23 @@
       <if test="ordersPay != null">
         orders_pay = #{ordersPay,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetName != null">
-        orders_getName = #{ordersGetName,jdbcType=VARCHAR},
+      <if test="ordersGetname != null">
+        orders_getName = #{ordersGetname,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetAddress != null">
-        orders_getAddress = #{ordersGetAddress,jdbcType=VARCHAR},
+      <if test="ordersGetaddress != null">
+        orders_getAddress = #{ordersGetaddress,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetPhone != null">
-        orders_getPhone = #{ordersGetPhone,jdbcType=VARCHAR},
+      <if test="ordersGetphone != null">
+        orders_getPhone = #{ordersGetphone,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetScore != null">
-        orders_getScore = #{ordersGetScore,jdbcType=INTEGER},
+      <if test="ordersGetscore != null">
+        orders_getScore = #{ordersGetscore,jdbcType=INTEGER},
       </if>
-      <if test="ordersExpressNum != null">
-        orders_expressNum = #{ordersExpressNum,jdbcType=VARCHAR},
+      <if test="ordersExpressnum != null">
+        orders_expressNum = #{ordersExpressnum,jdbcType=VARCHAR},
       </if>
-      <if test="ordersGetTime != null">
-        orders_getTime = #{ordersGetTime,jdbcType=VARCHAR},
+      <if test="ordersGettime != null">
+        orders_getTime = #{ordersGettime,jdbcType=VARCHAR},
       </if>
     </set>
     where orders_id = #{ordersId,jdbcType=INTEGER}
@@ -195,20 +195,20 @@
   <update id="updateByPrimaryKey" parameterType="com.rimi.esports.beans.Orders">
     <!--@mbg.generated-->
     update orders
-    set orders_username = #{ordersUsername,jdbcType=VARCHAR},
+    set user_tel = #{userTel,jdbcType=VARCHAR},
       orders_num = #{ordersNum,jdbcType=VARCHAR},
       orders_time = #{ordersTime,jdbcType=VARCHAR},
       orders_sum = #{ordersSum,jdbcType=DECIMAL},
       orders_status = #{ordersStatus,jdbcType=VARCHAR},
-      orders_getMethod = #{ordersGetMethod,jdbcType=VARCHAR},
+      orders_getMethod = #{ordersGetmethod,jdbcType=VARCHAR},
       orders_money = #{ordersMoney,jdbcType=DECIMAL},
       orders_pay = #{ordersPay,jdbcType=VARCHAR},
-      orders_getName = #{ordersGetName,jdbcType=VARCHAR},
-      orders_getAddress = #{ordersGetAddress,jdbcType=VARCHAR},
-      orders_getPhone = #{ordersGetPhone,jdbcType=VARCHAR},
-      orders_getScore = #{ordersGetScore,jdbcType=INTEGER},
-      orders_expressNum = #{ordersExpressNum,jdbcType=VARCHAR},
-      orders_getTime = #{ordersGetTime,jdbcType=VARCHAR}
+      orders_getName = #{ordersGetname,jdbcType=VARCHAR},
+      orders_getAddress = #{ordersGetaddress,jdbcType=VARCHAR},
+      orders_getPhone = #{ordersGetphone,jdbcType=VARCHAR},
+      orders_getScore = #{ordersGetscore,jdbcType=INTEGER},
+      orders_expressNum = #{ordersExpressnum,jdbcType=VARCHAR},
+      orders_getTime = #{ordersGettime,jdbcType=VARCHAR}
     where orders_id = #{ordersId,jdbcType=INTEGER}
   </update>
 </mapper>

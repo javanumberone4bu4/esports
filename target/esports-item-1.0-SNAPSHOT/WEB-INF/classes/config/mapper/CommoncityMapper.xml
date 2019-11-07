@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.esports.mapper.CommoncityMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.esports.beans.Commoncity">
+    <!--@mbg.generated-->
+    <!--@Table commoncity-->
+    <id column="commonCity_id" jdbcType="INTEGER" property="commoncityId" />
+    <result column="commonCity_userImage" jdbcType="VARCHAR" property="commoncityUserimage" />
+    <result column="commonCity_name" jdbcType="VARCHAR" property="commoncityName" />
+    <result column="commonCity_time" jdbcType="VARCHAR" property="commoncityTime" />
+    <result column="commonCity_content" jdbcType="VARCHAR" property="commoncityContent" />
+    <result column="commonCity_picture" jdbcType="VARCHAR" property="commoncityPicture" />
+    <result column="commonCity_location" jdbcType="VARCHAR" property="commoncityLocation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    commonCity_id, commonCity_userImage, commonCity_name, commonCity_time, commonCity_content, 
+    commonCity_picture, commonCity_location
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from commoncity
+    where commonCity_id = #{commoncityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from commoncity
+    where commonCity_id = #{commoncityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="commonCity_id" keyProperty="commoncityId" parameterType="com.rimi.esports.beans.Commoncity" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into commoncity (commonCity_userImage, commonCity_name, 
+      commonCity_time, commonCity_content, commonCity_picture, 
+      commonCity_location)
+    values (#{commoncityUserimage,jdbcType=VARCHAR}, #{commoncityName,jdbcType=VARCHAR}, 
+      #{commoncityTime,jdbcType=VARCHAR}, #{commoncityContent,jdbcType=VARCHAR}, #{commoncityPicture,jdbcType=VARCHAR}, 
+      #{commoncityLocation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="commonCity_id" keyProperty="commoncityId" parameterType="com.rimi.esports.beans.Commoncity" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into commoncity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commoncityUserimage != null">
+        commonCity_userImage,
+      </if>
+      <if test="commoncityName != null">
+        commonCity_name,
+      </if>
+      <if test="commoncityTime != null">
+        commonCity_time,
+      </if>
+      <if test="commoncityContent != null">
+        commonCity_content,
+      </if>
+      <if test="commoncityPicture != null">
+        commonCity_picture,
+      </if>
+      <if test="commoncityLocation != null">
+        commonCity_location,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commoncityUserimage != null">
+        #{commoncityUserimage,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityName != null">
+        #{commoncityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityTime != null">
+        #{commoncityTime,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityContent != null">
+        #{commoncityContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityPicture != null">
+        #{commoncityPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityLocation != null">
+        #{commoncityLocation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.esports.beans.Commoncity">
+    <!--@mbg.generated-->
+    update commoncity
+    <set>
+      <if test="commoncityUserimage != null">
+        commonCity_userImage = #{commoncityUserimage,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityName != null">
+        commonCity_name = #{commoncityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityTime != null">
+        commonCity_time = #{commoncityTime,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityContent != null">
+        commonCity_content = #{commoncityContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityPicture != null">
+        commonCity_picture = #{commoncityPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="commoncityLocation != null">
+        commonCity_location = #{commoncityLocation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where commonCity_id = #{commoncityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.esports.beans.Commoncity">
+    <!--@mbg.generated-->
+    update commoncity
+    set commonCity_userImage = #{commoncityUserimage,jdbcType=VARCHAR},
+      commonCity_name = #{commoncityName,jdbcType=VARCHAR},
+      commonCity_time = #{commoncityTime,jdbcType=VARCHAR},
+      commonCity_content = #{commoncityContent,jdbcType=VARCHAR},
+      commonCity_picture = #{commoncityPicture,jdbcType=VARCHAR},
+      commonCity_location = #{commoncityLocation,jdbcType=VARCHAR}
+    where commonCity_id = #{commoncityId,jdbcType=INTEGER}
+  </update>
+</mapper>

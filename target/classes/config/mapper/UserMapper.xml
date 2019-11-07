@@ -1,51 +1,101 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rimi.esports.mapper.UserMapper">
-    <resultMap id="baseResultMap" type="user">
-        <id column="user_id" property="userId" />
-        <result column="user_tel" property="userTel" />
-        <result column="password" property="password" />
-        <result column="user_money" property="userMoney" />
-        <result column="openId" property="openId" />
-    </resultMap>
-    <select id="selectByUserTel" resultMap="baseResultMap">
+  <resultMap id="BaseResultMap" type="com.rimi.esports.beans.User">
+    <!--@mbg.generated-->
+    <!--@Table user-->
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_money" jdbcType="DECIMAL" property="userMoney" />
+    <result column="openId" jdbcType="VARCHAR" property="openid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    user_id, user_tel, `password`, user_money, openId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.rimi.esports.beans.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user (user_tel, `password`, user_money, 
+      openId)
+    values (#{userTel,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{userMoney,jdbcType=DECIMAL}, 
+      #{openid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.rimi.esports.beans.User" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userTel != null">
+        user_tel,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="userMoney != null">
+        user_money,
+      </if>
+      <if test="openid != null">
+        openId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userTel != null">
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userMoney != null">
+        #{userMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.esports.beans.User">
+    <!--@mbg.generated-->
+    update user
+    <set>
+      <if test="userTel != null">
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userMoney != null">
+        user_money = #{userMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="openid != null">
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.esports.beans.User">
+    <!--@mbg.generated-->
+    update user
+    set user_tel = #{userTel,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      user_money = #{userMoney,jdbcType=DECIMAL},
+      openId = #{openid,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+    <select id="selectByUserTel" resultMap="BaseResultMap">
         select * from user where user_tel=#{userTel}
     </select>
-    <insert id="insert" useGeneratedKeys="true" keyProperty="userId">
-        insert into user(user_tel, password,user_money,openId) values(#{userTel},#{password},#{userMoney},#{openId})
-    </insert>
-    <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.rimi.esports.beans.User" useGeneratedKeys="true">
-        <!--@mbg.generated-->
-        insert into user
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="userTel != null">
-                user_tel,
-            </if>
-            <if test="password != null">
-                password,
-            </if>
-            <if test="userMoney != null">
-                user_money,
-            </if>
-            <if test="openId != null">
-                openId,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="userTel != null">
-                #{userTel,jdbcType=VARCHAR},
-            </if>
-            <if test="password != null">
-                #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="userMoney != null">
-                #{userMoney,jdbcType=DECIMAL},
-            </if>
-            <if test="openId != null">
-                #{openId,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
     <select id="selectByUserTelAndPassword" resultType="com.rimi.esports.beans.User">
         select * from user where user_tel=#{userTel} and password=#{password}
     </select>
@@ -55,4 +105,7 @@
     <delete id="updateUserMoney">
         update user set user_money=#{userMoney} where userTel=#{userTel}
     </delete>
+    <select id="selectByOpenId" resultType="com.rimi.esports.beans.User">
+        select * from user where openId=#{openId}
+    </select>
 </mapper>

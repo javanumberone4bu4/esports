@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.esports.mapper.HotMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.esports.beans.Hot">
+    <!--@mbg.generated-->
+    <!--@Table hot-->
+    <id column="hot_id" jdbcType="INTEGER" property="hotId" />
+    <result column="hot_userImage" jdbcType="VARCHAR" property="hotUserimage" />
+    <result column="sm_name" jdbcType="VARCHAR" property="smName" />
+    <result column="hot_time" jdbcType="VARCHAR" property="hotTime" />
+    <result column="hot_content" jdbcType="VARCHAR" property="hotContent" />
+    <result column="hot_picture" jdbcType="VARCHAR" property="hotPicture" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    hot_id, hot_userImage, sm_name, hot_time, hot_content, hot_picture, `location`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from hot
+    where hot_id = #{hotId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from hot
+    where hot_id = #{hotId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="hot_id" keyProperty="hotId" parameterType="com.rimi.esports.beans.Hot" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hot (hot_userImage, sm_name, hot_time, 
+      hot_content, hot_picture, `location`
+      )
+    values (#{hotUserimage,jdbcType=VARCHAR}, #{smName,jdbcType=VARCHAR}, #{hotTime,jdbcType=VARCHAR}, 
+      #{hotContent,jdbcType=VARCHAR}, #{hotPicture,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="hot_id" keyProperty="hotId" parameterType="com.rimi.esports.beans.Hot" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into hot
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hotUserimage != null">
+        hot_userImage,
+      </if>
+      <if test="smName != null">
+        sm_name,
+      </if>
+      <if test="hotTime != null">
+        hot_time,
+      </if>
+      <if test="hotContent != null">
+        hot_content,
+      </if>
+      <if test="hotPicture != null">
+        hot_picture,
+      </if>
+      <if test="location != null">
+        `location`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hotUserimage != null">
+        #{hotUserimage,jdbcType=VARCHAR},
+      </if>
+      <if test="smName != null">
+        #{smName,jdbcType=VARCHAR},
+      </if>
+      <if test="hotTime != null">
+        #{hotTime,jdbcType=VARCHAR},
+      </if>
+      <if test="hotContent != null">
+        #{hotContent,jdbcType=VARCHAR},
+      </if>
+      <if test="hotPicture != null">
+        #{hotPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.esports.beans.Hot">
+    <!--@mbg.generated-->
+    update hot
+    <set>
+      <if test="hotUserimage != null">
+        hot_userImage = #{hotUserimage,jdbcType=VARCHAR},
+      </if>
+      <if test="smName != null">
+        sm_name = #{smName,jdbcType=VARCHAR},
+      </if>
+      <if test="hotTime != null">
+        hot_time = #{hotTime,jdbcType=VARCHAR},
+      </if>
+      <if test="hotContent != null">
+        hot_content = #{hotContent,jdbcType=VARCHAR},
+      </if>
+      <if test="hotPicture != null">
+        hot_picture = #{hotPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        `location` = #{location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hot_id = #{hotId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.esports.beans.Hot">
+    <!--@mbg.generated-->
+    update hot
+    set hot_userImage = #{hotUserimage,jdbcType=VARCHAR},
+      sm_name = #{smName,jdbcType=VARCHAR},
+      hot_time = #{hotTime,jdbcType=VARCHAR},
+      hot_content = #{hotContent,jdbcType=VARCHAR},
+      hot_picture = #{hotPicture,jdbcType=VARCHAR},
+      `location` = #{location,jdbcType=VARCHAR}
+    where hot_id = #{hotId,jdbcType=INTEGER}
+  </update>
+</mapper>
