@@ -6,6 +6,7 @@ import com.aliyuncs.IAcsClient;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 
@@ -24,11 +25,12 @@ public final class SendMessageUtils {
     private static String accessKeySecret = "XteD9K2gczwZbQ0d3vwP2AZhWXO7Ko";
     private static String signName = "享动";
     private static String templeteCode = "SMS_176926742";
+    private static String num=String.valueOf(((int)(Math.random()*900000+100000)));
 
     private SendMessageUtils() {
     }
 
-    public static SendSmsResponse sendMessage(String telephone, String number) throws ClientException {
+    public static String sendMessage(String telephone) throws ClientException {
 
         // 可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
@@ -41,22 +43,20 @@ public final class SendMessageUtils {
 
         // 组装请求对象-具体描述见控制台-文档部分内容
         SendSmsRequest request = new SendSmsRequest();
-
+        request.setMethod(MethodType.POST);
         // 必填:待发送手机号
         request.setPhoneNumbers(telephone);
         // 必填:短信签名-可在短信控制台中找到
         request.setSignName(signName);
         // 必填:短信模板-可在短信控制台中找到
         request.setTemplateCode(templeteCode);
-
         // 可选:模板中的变量替换JSON串,如模板内容为"尊敬的用户,您的验证码为${code}"时,此处的值为
-        String jsonParam = "{\"code\":\""+number+"\"}";
+        String jsonParam = "{\"code\":\""+num+"\"}";
         request.setTemplateParam(jsonParam);
 
         // hint 此处可能会抛出异常，注意catch
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
-
-        return sendSmsResponse;
+        return num;
         }
 
 

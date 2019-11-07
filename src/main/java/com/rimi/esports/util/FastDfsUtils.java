@@ -19,7 +19,7 @@ public class FastDfsUtils {
     private static StorageClient1 storageClient1;
 
     static {
-        try {
+        try{
             ClientGlobal.initByProperties("config/db/fastdfs-client.properties");
             trackerClient = new TrackerClient();
             trackerServer = trackerClient.getConnection();

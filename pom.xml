@@ -28,6 +28,14 @@
         <pagehelper.version>5.1.10</pagehelper.version>
         <aliyun.version>4.0.3</aliyun.version>
         <aliyun-sdk.version>1.1.0</aliyun-sdk.version>
+        <aliyun-java-sdk-dysmsapi.version>1.1.0</aliyun-java-sdk-dysmsapi.version>
+        <jsoup.version>1.12.1</jsoup.version>
+        <fastjson.version>1.2.61</fastjson.version>
+        <javaee.version>8.0.1</javaee.version>
+        <aliyuncs.version>1.0.1</aliyuncs.version>
+        <alipay.version>4.8.10.ALL</alipay.version>
+        <fastdfs.client.version>1.27-SNAPSHOT</fastdfs.client.version>
+        <fileupload.version>1.4</fileupload.version>
     </properties>
     <build>
         <plugins>
@@ -195,15 +203,49 @@
         <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
-            <version>1.1.0</version>
+            <version>${aliyun-java-sdk-dysmsapi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.12.1</version>
+            <version>${jsoup.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${javaee.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--阿里云接口包-->
+        <dependency>
+            <groupId>com.github.suxingli</groupId>
+            <artifactId>aliyuncs</artifactId>
+            <version>${aliyuncs.version}</version>
+        </dependency>
+        <!--二维码支付包-->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>${alipay.version}</version>
         </dependency>
 
-
+        <!--fastdfs-->
+        <dependency>
+            <groupId>org.csource</groupId>
+            <artifactId>fastdfs-client-java</artifactId>
+            <version>${fastdfs.client.version}</version>
+        </dependency>
+        <!--fileupload-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${fileupload.version}</version>
+        </dependency>
 
     </dependencies>
 

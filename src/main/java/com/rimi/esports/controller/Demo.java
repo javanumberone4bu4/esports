@@ -25,10 +25,10 @@ public class Demo {
 
     // 调用短信接口
     public static void main(String[] args) {
-        try {
+        try{
             sendSms();
         } catch (ClientException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 

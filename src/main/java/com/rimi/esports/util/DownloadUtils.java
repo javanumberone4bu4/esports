@@ -23,7 +23,7 @@ public final class DownloadUtils {
         //判断要下载的文件是否存在
         File file=new File(realPath+"/"+fileName);
         if(file.exists()){
-            try {
+             try{
                 //得到响应的输出流
                 OutputStream out = response.getOutputStream();
                 //得到文件的输入流

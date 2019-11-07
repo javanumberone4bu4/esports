@@ -18,6 +18,7 @@ public class ExceptionController {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public Result error(Exception e){
+        e.printStackTrace();
         return new DefaultResult(ResultCode.ERROR);
     }
 }

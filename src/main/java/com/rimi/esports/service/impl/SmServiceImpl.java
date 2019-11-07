@@ -36,7 +36,7 @@ public class SmServiceImpl implements ISmService {
 
     @Override
     public ResultData selectByTelephone(Sm sm) {
-        Sm sm1 = smMapper.selectByTelephone(sm.getTelephone());
+        Sm sm1 = smMapper.selectByTelephone(sm.getUserTel());
         if(sm1!=null){
             list=new ArrayList();
             list.add(sm);
@@ -54,5 +54,17 @@ public class SmServiceImpl implements ISmService {
             return new DefaultResult(ResultCode.SUCCESS);
         }
         return new DefaultResult(ResultCode.FAIL);
+    }
+
+    @Override
+    public ResultData selectBySmName(String smName) {
+        Sm sm = smMapper.selectBySmName(smName);
+        if(sm!=null){
+            list=new ArrayList();
+            list.add(sm);
+            return new DefaultResultData(list);
+        }
+
+        return new DefaultResultData(null) ;
     }
 }
