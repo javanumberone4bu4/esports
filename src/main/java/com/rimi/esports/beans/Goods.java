@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * ${Description}
  * @author Wang Xiaoping
- * @date 2019/11/6 14:30
+ * @date 2019/11/8 17:17
  */
 @ApiModel(value="com.rimi.esports.Goods")
 @Data
@@ -78,6 +78,12 @@ public class Goods implements Serializable {
     */
     @ApiModelProperty(value="单位")
     private String goodsLocation;
+
+    @ApiModelProperty(value="null")
+    private Integer goodsNum;
+
+    @ApiModelProperty(value="null")
+    private Double goodsPricesum;
 
     private static final long serialVersionUID = 1L;
 }

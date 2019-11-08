@@ -43,5 +43,10 @@ public class Shop implements Serializable {
     @ApiModelProperty(value="商品数量")
     private Integer shopGoodsnum;
 
+
+    /**
+     * 商品对象
+     */
+    private Goods goods;
     private static final long serialVersionUID = 1L;
 }

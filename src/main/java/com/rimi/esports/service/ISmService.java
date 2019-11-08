@@ -10,7 +10,7 @@ import com.rimi.esports.common.ResultData;
  */
 public interface ISmService {
     Result updateByTelephone(Sm sm);
-    ResultData selectByTelephone(Sm sm);
+    ResultData selectByTelephone(String userTel);
     Result save(Sm sm);
     ResultData selectBySmName(String smName);
 }

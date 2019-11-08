@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.esports.mapper.ImgMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.esports.beans.Img">
+    <!--@mbg.generated-->
+    <!--@Table img-->
+    <id column="img_id" jdbcType="INTEGER" property="imgId" />
+    <result column="img_page" jdbcType="VARCHAR" property="imgPage" />
+    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    img_id, img_page, img_path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from img
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from img
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="img_id" keyProperty="imgId" parameterType="com.rimi.esports.beans.Img" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into img (img_page, img_path)
+    values (#{imgPage,jdbcType=VARCHAR}, #{imgPath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="img_id" keyProperty="imgId" parameterType="com.rimi.esports.beans.Img" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into img
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imgPage != null">
+        img_page,
+      </if>
+      <if test="imgPath != null">
+        img_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imgPage != null">
+        #{imgPage,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null">
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.esports.beans.Img">
+    <!--@mbg.generated-->
+    update img
+    <set>
+      <if test="imgPage != null">
+        img_page = #{imgPage,jdbcType=VARCHAR},
+      </if>
+      <if test="imgPath != null">
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.esports.beans.Img">
+    <!--@mbg.generated-->
+    update img
+    set img_page = #{imgPage,jdbcType=VARCHAR},
+      img_path = #{imgPath,jdbcType=VARCHAR}
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+      select * from img
+    </select>
+  <select id="selectByImgPage" resultMap="BaseResultMap">
+    select * from img where img_page=#{imgPage}
+  </select>
+</mapper>

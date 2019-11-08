@@ -4,9 +4,8 @@ import com.rimi.esports.beans.Brand;
 
 /**
  * ${Description}
- *
  * @author Wang Xiaoping
- * @date 2019/11/6 14:30
+ * @date 2019/11/8 10:21
  */
 public interface BrandMapper {
     int deleteByPrimaryKey(Integer brandId);

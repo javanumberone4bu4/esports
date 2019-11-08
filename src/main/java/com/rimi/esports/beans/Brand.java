@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * ${Description}
  * @author Wang Xiaoping
- * @date 2019/11/6 14:30
+ * @date 2019/11/8 10:21
  */
 @ApiModel(value="com.rimi.esports.Brand")
 @Data
@@ -30,6 +30,12 @@ public class Brand implements Serializable {
     */
     @ApiModelProperty(value="品牌图标")
     private String brandLogo;
+
+    @ApiModelProperty(value="null")
+    private String brandType;
+
+    @ApiModelProperty(value="null")
+    private String brandLogoname;
 
     private static final long serialVersionUID = 1L;
 }

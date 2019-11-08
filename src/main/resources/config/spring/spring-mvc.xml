@@ -16,6 +16,7 @@
     <!--静态资源映射-->
     <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+    <mvc:resources mapping="/download/**" location="/download/"/>
 
     <!--配置跨域请求-->
     <!--<mvc:cors>-->

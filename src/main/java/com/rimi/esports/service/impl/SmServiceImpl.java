@@ -27,6 +27,9 @@ public class SmServiceImpl implements ISmService {
 
     @Override
     public Result updateByTelephone(Sm sm) {
+        if(sm==null){
+            return new DefaultResult(ResultCode.FAIL);
+        }
         int i = smMapper.updateByTelephone(sm);
         if(i>0){
             return new DefaultResult(ResultCode.SUCCESS);
@@ -35,20 +38,25 @@ public class SmServiceImpl implements ISmService {
     }
 
     @Override
-    public ResultData selectByTelephone(Sm sm) {
-        Sm sm1 = smMapper.selectByTelephone(sm.getUserTel());
+    public ResultData selectByTelephone(String userTel) {
+        if(userTel==null){
+            return null;
+        }
+        Sm sm1 = smMapper.selectByTelephone(userTel);
         if(sm1!=null){
             list=new ArrayList();
-            list.add(sm);
+            list.add(sm1);
             return new DefaultResultData(list);
         }
-        list=new ArrayList();
-        list.add(sm);
-        return new DefaultResultData(list);
+
+        return null;
     }
 
     @Override
     public Result save(Sm sm) {
+        if(sm==null){
+            return new DefaultResult(ResultCode.FAIL);
+        }
         int i = smMapper.insertSelective(sm);
         if(i>0){
             return new DefaultResult(ResultCode.SUCCESS);
@@ -58,6 +66,9 @@ public class SmServiceImpl implements ISmService {
 
     @Override
     public ResultData selectBySmName(String smName) {
+        if(smName==null){
+            return null;
+        }
         Sm sm = smMapper.selectBySmName(smName);
         if(sm!=null){
             list=new ArrayList();
@@ -65,6 +76,6 @@ public class SmServiceImpl implements ISmService {
             return new DefaultResultData(list);
         }
 
-        return new DefaultResultData(null) ;
+        return null;
     }
 }

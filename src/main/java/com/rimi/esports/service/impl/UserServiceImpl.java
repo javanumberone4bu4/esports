@@ -45,6 +45,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Result selectByUserTel(String userTel) {
+        if(userTel==null){
+            return new DefaultResult(ResultCode.FAIL);
+        }
         User user = userMapper.selectByUserTel(userTel);
         if(user!=null){
             return new DefaultResult(ResultCode.FAIL);
@@ -65,6 +68,9 @@ public class UserServiceImpl implements IUserService {
         //}
        // if(num!=null) {
             //if (num.equals(number)) {
+        if(user==null){
+            return new DefaultResult(ResultCode.FAIL);
+        }
 
         int insert = userMapper.insertSelective(user);
                 if (insert > 0) {
@@ -96,6 +102,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User selectByUserTel2(String userTel) {
+        if(userTel==null){
+            return null;
+        }
         return userMapper.selectByUserTel(userTel);
     }
 
@@ -109,6 +118,9 @@ public class UserServiceImpl implements IUserService {
         //} catch (ClientException e) {
         //    e.printStackTrace();
         //}
+        if(user==null){
+            return new DefaultResult(ResultCode.FAIL);
+        }
         User user1 = userMapper.selectByUserTel(user.getUserTel());
         if(user1!=null) {
            // if (num != null) {
@@ -131,6 +143,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Result updatePassword(User user) {
+        if(user==null){
+            return new DefaultResult(ResultCode.FAIL);
+        }
         int i = userMapper.updatePassword(user.getUserTel(), PwdUtils.getPwd(user.getUserTel() + user.getPassword()));
         if(i>0){
             return new DefaultResult(ResultCode.SUCCESS);

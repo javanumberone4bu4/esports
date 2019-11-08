@@ -16,7 +16,7 @@ FileUtils {
     /**
      * 文件存放的地址
      */
-    public static final String FILE_PATH = "/resources/file/";
+    public static final String FILE_PATH = "/download/image/";
 
     /**
      * 上传文件,返回文件的地址

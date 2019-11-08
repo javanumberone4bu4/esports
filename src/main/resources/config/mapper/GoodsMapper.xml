@@ -15,11 +15,13 @@
     <result column="goods_description" jdbcType="VARCHAR" property="goodsDescription" />
     <result column="goods_upTime" jdbcType="VARCHAR" property="goodsUptime" />
     <result column="goods_location" jdbcType="VARCHAR" property="goodsLocation" />
+    <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+    <result column="goods_priceSum" jdbcType="DOUBLE" property="goodsPricesum" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     goods_id, goods_source, goods_name, goods_photo, goods_price, brand_id, goods_classify, 
-    goods_showTime, goods_description, goods_upTime, goods_location
+    goods_showTime, goods_description, goods_upTime, goods_location, goods_num, goods_priceSum
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -38,11 +40,13 @@
     insert into goods (goods_source, goods_name, goods_photo, 
       goods_price, brand_id, goods_classify, 
       goods_showTime, goods_description, goods_upTime, 
-      goods_location)
+      goods_location, goods_num, goods_priceSum
+      )
     values (#{goodsSource,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{goodsPhoto,jdbcType=VARCHAR}, 
       #{goodsPrice,jdbcType=DOUBLE}, #{brandId,jdbcType=INTEGER}, #{goodsClassify,jdbcType=VARCHAR}, 
       #{goodsShowtime,jdbcType=VARCHAR}, #{goodsDescription,jdbcType=VARCHAR}, #{goodsUptime,jdbcType=VARCHAR}, 
-      #{goodsLocation,jdbcType=VARCHAR})
+      #{goodsLocation,jdbcType=VARCHAR}, #{goodsNum,jdbcType=INTEGER}, #{goodsPricesum,jdbcType=DOUBLE}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="goods_id" keyProperty="goodsId" parameterType="com.rimi.esports.beans.Goods" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -78,6 +82,12 @@
       <if test="goodsLocation != null">
         goods_location,
       </if>
+      <if test="goodsNum != null">
+        goods_num,
+      </if>
+      <if test="goodsPricesum != null">
+        goods_priceSum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="goodsSource != null">
@@ -109,6 +119,12 @@
       </if>
       <if test="goodsLocation != null">
         #{goodsLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPricesum != null">
+        #{goodsPricesum,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -146,6 +162,12 @@
       <if test="goodsLocation != null">
         goods_location = #{goodsLocation,jdbcType=VARCHAR},
       </if>
+      <if test="goodsNum != null">
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPricesum != null">
+        goods_priceSum = #{goodsPricesum,jdbcType=DOUBLE},
+      </if>
     </set>
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
@@ -161,7 +183,15 @@
       goods_showTime = #{goodsShowtime,jdbcType=VARCHAR},
       goods_description = #{goodsDescription,jdbcType=VARCHAR},
       goods_upTime = #{goodsUptime,jdbcType=VARCHAR},
-      goods_location = #{goodsLocation,jdbcType=VARCHAR}
+      goods_location = #{goodsLocation,jdbcType=VARCHAR},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_priceSum = #{goodsPricesum,jdbcType=DOUBLE}
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from goods
+  </select>
+  <select id="selectByUserTel" resultMap="BaseResultMap">
+    select * from goods where goods_source=#{goodsSource}
+  </select>
 </mapper>

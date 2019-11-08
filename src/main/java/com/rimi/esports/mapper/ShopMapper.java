@@ -2,6 +2,8 @@ package com.rimi.esports.mapper;
 
 import com.rimi.esports.beans.Shop;
 
+import java.util.List;
+
 /**
  * ${Description}
  *
@@ -20,4 +22,6 @@ public interface ShopMapper {
     int updateByPrimaryKeySelective(Shop record);
 
     int updateByPrimaryKey(Shop record);
+
+    List selectGoodsByShop(String userTel);
 }

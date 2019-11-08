@@ -165,3 +165,11 @@ create table esports.meCode(
   number varchar(50) default null comment '验证码',
   primary key(meCode_id)
 )engine=InnoDB comment '验证码表';
+
+drop table if exists esports.img;
+create table esports.img(
+ img_id int not null auto_increment comment 'ID',
+ img_page varchar(40) not null comment '存的页面',
+ img_path varchar(100) not  null comment '存的路径',
+ primary key(img_id)
+)engine=InnoDB comment '图片路径表';
