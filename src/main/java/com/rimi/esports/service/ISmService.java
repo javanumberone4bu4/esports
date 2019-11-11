@@ -13,4 +13,5 @@ public interface ISmService {
     ResultData selectByTelephone(String userTel);
     Result save(Sm sm);
     ResultData selectBySmName(String smName);
+    Result updateByUserTel(String smImage,String userTel);
 }

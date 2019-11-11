@@ -68,4 +68,13 @@ public class GoodsServiceImpl implements IGoodsService {
         }
         return null;
     }
+
+    @Override
+    public ResultData guessLike() {
+        List<Goods> goods = goodsMapper.selectByParam();
+        if(goods!=null&&goods.size()>0){
+            return new DefaultResultData(goods);
+        }
+        return null;
+    }
 }

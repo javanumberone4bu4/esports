@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * ${Description}
  * @author Wang Xiaoping
- * @date 2019/11/8 9:52
+ * @date 2019/11/11 16:54
  */
 @ApiModel(value="com.rimi.esports.Img")
 @Data
@@ -30,6 +30,9 @@ public class Img implements Serializable {
     */
     @ApiModelProperty(value="存的路径")
     private String imgPath;
+
+    @ApiModelProperty(value="null")
+    private String imgName;
 
     private static final long serialVersionUID = 1L;
 }

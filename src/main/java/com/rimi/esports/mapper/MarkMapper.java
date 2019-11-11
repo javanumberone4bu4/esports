@@ -20,4 +20,6 @@ public interface MarkMapper {
     int updateByPrimaryKeySelective(Mark record);
 
     int updateByPrimaryKey(Mark record);
+
+    Mark selectByUserTel(String userTel);
 }

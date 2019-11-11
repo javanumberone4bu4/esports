@@ -28,7 +28,7 @@ public class Sm implements Serializable {
     /**
     * 真实姓名
     */
-    @ApiModelProperty(value="真实姓名")
+    @ApiModelProperty(value="真实地址s")
     private String smRealname;
 
     /**

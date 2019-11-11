@@ -1,6 +1,7 @@
 package com.rimi.esports.mapper;
 
 import com.rimi.esports.beans.Sm;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * ${Description}
@@ -25,4 +26,6 @@ public interface SmMapper {
     Sm selectByTelephone(String userTel);
 
     Sm selectBySmName(String name);
+
+    int updateBySmImage(@Param("smImage") String smIMage, @Param("userTel") String userTel);
 }

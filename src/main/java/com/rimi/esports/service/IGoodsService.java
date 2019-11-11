@@ -26,4 +26,6 @@ public interface IGoodsService {
 
     ResultData selectByUserTel(String goodsSource);
 
+    ResultData guessLike();
+
 }

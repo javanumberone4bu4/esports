@@ -54,8 +54,13 @@ public final class SendMessageUtils {
         String jsonParam = "{\"code\":\""+num+"\"}";
         request.setTemplateParam(jsonParam);
 
-        // hint 此处可能会抛出异常，注意catch
-        SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
+        try {
+            // hint 此处可能会抛出异常，注意catch
+            SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
+        } catch (ClientException e) {
+            e.printStackTrace();
+            System.out.println("没填手机号");
+        }
         return num;
         }
 

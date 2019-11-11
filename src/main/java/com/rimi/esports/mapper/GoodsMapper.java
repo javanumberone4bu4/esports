@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * ${Description}
  * @author Wang Xiaoping
- * @date 2019/11/8 17:17
+ * @date 2019/11/10 14:58
  */
 public interface GoodsMapper {
     int deleteByPrimaryKey(Integer goodsId);
@@ -25,4 +25,6 @@ public interface GoodsMapper {
     List<Goods> selectAll();
 
     Goods selectByUserTel(String goodsSource);
+
+    List<Goods> selectByParam();
 }

@@ -117,4 +117,7 @@
       `location` = #{location,jdbcType=VARCHAR}
     where hot_id = #{hotId,jdbcType=INTEGER}
   </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+      select * from hot
+    </select>
 </mapper>

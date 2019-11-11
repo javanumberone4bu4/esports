@@ -93,4 +93,30 @@
       brand_logoName = #{brandLogoname,jdbcType=VARCHAR}
     where brand_id = #{brandId,jdbcType=INTEGER}
   </update>
+    <select id="selectByBrandType" resultMap="BaseResultMap">
+      select * from brand where brand_type=#{brandType}
+    </select>
+  <select id="selectLikeBrandName" resultMap="BaseResultMap">
+      select * from brand where brand_name like concate("%",#{brandName},"%")
+  </select>
+    <select id="selectByBrandNameAndBrandBrandType" resultMap="BaseResultMap">
+        select brand_name,brand_type from brand
+    </select>
+    <select id="selectByNameAndTypeAndLogoName" resultMap="BaseResultMap">
+      select brand_name,brand_type,brand_logoName,brand_logo from brand
+    </select>
+  <select id="selectByParam" resultMap="BaseResultMap">
+    select brand_name,brand_type,brand_logoName from brand where brand_id between 15 and 25
+  </select>
+  <select id="selectByCondition" resultMap="BaseResultMap">
+    select * from brand  <where>
+    <if test="brandName != null and brandName != ''">
+      brand_name=#{brandName}
+    </if>
+    <if test="brandType != null and brandType != ''">
+      and brand_type=#{brandType}
+    </if>
+  </where>
+  </select>
+
 </mapper>

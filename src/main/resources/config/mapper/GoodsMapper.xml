@@ -17,11 +17,20 @@
     <result column="goods_location" jdbcType="VARCHAR" property="goodsLocation" />
     <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
     <result column="goods_priceSum" jdbcType="DOUBLE" property="goodsPricesum" />
+    <result column="goods_property" jdbcType="VARCHAR" property="goodsProperty" />
+    <association property="brand" javaType="com.rimi.esports.beans.Brand" >
+      <id column="brand_id" jdbcType="INTEGER" property="brandId"  />
+      <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+      <result column="brand_logo" jdbcType="VARCHAR" property="brandLogo" />
+      <result column="brand_type" jdbcType="VARCHAR" property="brandType" />
+      <result column="brand_logoName" jdbcType="VARCHAR" property="brandLogoname" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     goods_id, goods_source, goods_name, goods_photo, goods_price, brand_id, goods_classify, 
-    goods_showTime, goods_description, goods_upTime, goods_location, goods_num, goods_priceSum
+    goods_showTime, goods_description, goods_upTime, goods_location, goods_num, goods_priceSum, 
+    goods_property
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -40,13 +49,13 @@
     insert into goods (goods_source, goods_name, goods_photo, 
       goods_price, brand_id, goods_classify, 
       goods_showTime, goods_description, goods_upTime, 
-      goods_location, goods_num, goods_priceSum
-      )
+      goods_location, goods_num, goods_priceSum, 
+      goods_property)
     values (#{goodsSource,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{goodsPhoto,jdbcType=VARCHAR}, 
       #{goodsPrice,jdbcType=DOUBLE}, #{brandId,jdbcType=INTEGER}, #{goodsClassify,jdbcType=VARCHAR}, 
       #{goodsShowtime,jdbcType=VARCHAR}, #{goodsDescription,jdbcType=VARCHAR}, #{goodsUptime,jdbcType=VARCHAR}, 
-      #{goodsLocation,jdbcType=VARCHAR}, #{goodsNum,jdbcType=INTEGER}, #{goodsPricesum,jdbcType=DOUBLE}
-      )
+      #{goodsLocation,jdbcType=VARCHAR}, #{goodsNum,jdbcType=INTEGER}, #{goodsPricesum,jdbcType=DOUBLE}, 
+      #{goodsProperty,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="goods_id" keyProperty="goodsId" parameterType="com.rimi.esports.beans.Goods" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -88,6 +97,9 @@
       <if test="goodsPricesum != null">
         goods_priceSum,
       </if>
+      <if test="goodsProperty != null">
+        goods_property,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="goodsSource != null">
@@ -125,6 +137,9 @@
       </if>
       <if test="goodsPricesum != null">
         #{goodsPricesum,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsProperty != null">
+        #{goodsProperty,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -168,6 +183,9 @@
       <if test="goodsPricesum != null">
         goods_priceSum = #{goodsPricesum,jdbcType=DOUBLE},
       </if>
+      <if test="goodsProperty != null">
+        goods_property = #{goodsProperty,jdbcType=VARCHAR},
+      </if>
     </set>
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
@@ -185,7 +203,8 @@
       goods_upTime = #{goodsUptime,jdbcType=VARCHAR},
       goods_location = #{goodsLocation,jdbcType=VARCHAR},
       goods_num = #{goodsNum,jdbcType=INTEGER},
-      goods_priceSum = #{goodsPricesum,jdbcType=DOUBLE}
+      goods_priceSum = #{goodsPricesum,jdbcType=DOUBLE},
+      goods_property = #{goodsProperty,jdbcType=VARCHAR}
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
   <select id="selectAll" resultMap="BaseResultMap">
@@ -194,4 +213,7 @@
   <select id="selectByUserTel" resultMap="BaseResultMap">
     select * from goods where goods_source=#{goodsSource}
   </select>
+    <select id="selectByParam" resultMap="BaseResultMap">
+      select goods_name,goods_classify,goods_description,goods_photo,goods_price,goods_property from goods where goods_id between 1 and 4
+    </select>
 </mapper>

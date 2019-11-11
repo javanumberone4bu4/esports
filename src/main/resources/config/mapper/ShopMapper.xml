@@ -7,7 +7,7 @@
     <result column="shop_choose" jdbcType="VARCHAR" property="shopChoose" />
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
     <result column="shop_goodsNum" jdbcType="INTEGER" property="shopGoodsnum" />
-    <association property="goods" javaType="com.rimi.esports.beans.Goods" >
+    <collection property="goods" ofType="com.rimi.esports.beans.Goods">
       <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
       <result column="goods_source" jdbcType="VARCHAR" property="goodsSource" />
       <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
@@ -19,7 +19,18 @@
       <result column="goods_description" jdbcType="VARCHAR" property="goodsDescription" />
       <result column="goods_upTime" jdbcType="VARCHAR" property="goodsUptime" />
       <result column="goods_location" jdbcType="VARCHAR" property="goodsLocation" />
-    </association>
+      <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+      <result column="goods_priceSum" jdbcType="DOUBLE" property="goodsPricesum" />
+      <result column="goods_property" jdbcType="VARCHAR" property="goodsProperty" />
+      <association property="brand" javaType="com.rimi.esports.beans.Brand" >
+        <id column="brand_id" jdbcType="INTEGER" property="brandId"  />
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+        <result column="brand_logo" jdbcType="VARCHAR" property="brandLogo" />
+        <result column="brand_type" jdbcType="VARCHAR" property="brandType" />
+        <result column="brand_logoName" jdbcType="VARCHAR" property="brandLogoname" />
+      </association>
+    </collection>
+
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -104,7 +115,7 @@
       shop_goodsNum = #{shopGoodsnum,jdbcType=INTEGER}
     where shop_id = #{shopId,jdbcType=INTEGER}
   </update>
-    <select id="selectGoodsByShop" resultType="java.util.List">
-       select * from shop s join goods g on s.goods_id = g.goods_id where s.user_tel=#{userTel}
+    <select id="selectGoodsByShop" resultType="java.util.List" resultMap="BaseResultMap">
+       select g.goods_name as goods_name,g.goods_source as goods_source,g.goods_id as goods_id,g.goods_photo as goods_photo,g.goods_property as goods_property,g.goods_description as goods_description,g.goods_num as goods_num,g.goods_price as goods_price,g.goods_priceSum as goods_priceSum,b.brand_name as brand_name,b.brand_type as brand_type,b.brand_logoName as brand_logoName from shop s join goods g join brand b on s.goods_id=g.goods_id and g.brand_id=b.brand_id where s.user_tel=#{userTel}
     </select>
 </mapper>

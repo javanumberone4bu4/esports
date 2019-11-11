@@ -3,6 +3,8 @@ package com.rimi.esports.beans;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -47,6 +49,7 @@ public class Shop implements Serializable {
     /**
      * 商品对象
      */
-    private Goods goods;
+    private List<Goods> goods;
+
     private static final long serialVersionUID = 1L;
 }

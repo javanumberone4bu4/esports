@@ -7,10 +7,7 @@ import com.rimi.esports.service.IGoodsService;
 import com.rimi.esports.vo.GoodsVo;
 import com.rimi.esports.vo.GoodsVo1;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 商品服务
@@ -44,6 +41,18 @@ public class GoodsController {
     @PostMapping("/goods/show")
     @ApiOperation(value = "微信端查看商品信息")
     public ResultData show(@RequestBody GoodsVo1 vo1){
+
         return goodsService.selectByUserTel(vo1.getGoodsSource());
+    }
+    @GetMapping("/goods/selectAll")
+    @ApiOperation(value = "查询所有商品")
+    public ResultData selectAll(){
+
+       return  goodsService.selectAll();
+    }
+    @GetMapping("/goods/guessLike")
+    @ApiOperation(value = "猜你喜欢数据")
+    public ResultData guessLike(){
+        return goodsService.guessLike();
     }
 }

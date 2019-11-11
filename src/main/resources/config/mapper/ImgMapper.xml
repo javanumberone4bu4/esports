@@ -7,10 +7,11 @@
     <id column="img_id" jdbcType="INTEGER" property="imgId" />
     <result column="img_page" jdbcType="VARCHAR" property="imgPage" />
     <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+    <result column="img_name" jdbcType="VARCHAR" property="imgName" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    img_id, img_page, img_path
+    img_id, img_page, img_path, img_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -26,8 +27,10 @@
   </delete>
   <insert id="insert" keyColumn="img_id" keyProperty="imgId" parameterType="com.rimi.esports.beans.Img" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into img (img_page, img_path)
-    values (#{imgPage,jdbcType=VARCHAR}, #{imgPath,jdbcType=VARCHAR})
+    insert into img (img_page, img_path, img_name
+      )
+    values (#{imgPage,jdbcType=VARCHAR}, #{imgPath,jdbcType=VARCHAR}, #{imgName,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="img_id" keyProperty="imgId" parameterType="com.rimi.esports.beans.Img" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -39,6 +42,9 @@
       <if test="imgPath != null">
         img_path,
       </if>
+      <if test="imgName != null">
+        img_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="imgPage != null">
@@ -46,6 +52,9 @@
       </if>
       <if test="imgPath != null">
         #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgName != null">
+        #{imgName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -59,6 +68,9 @@
       <if test="imgPath != null">
         img_path = #{imgPath,jdbcType=VARCHAR},
       </if>
+      <if test="imgName != null">
+        img_name = #{imgName,jdbcType=VARCHAR},
+      </if>
     </set>
     where img_id = #{imgId,jdbcType=INTEGER}
   </update>
@@ -66,10 +78,11 @@
     <!--@mbg.generated-->
     update img
     set img_page = #{imgPage,jdbcType=VARCHAR},
-      img_path = #{imgPath,jdbcType=VARCHAR}
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      img_name = #{imgName,jdbcType=VARCHAR}
     where img_id = #{imgId,jdbcType=INTEGER}
   </update>
-    <select id="selectAll" resultMap="BaseResultMap">
+  <select id="selectAll" resultMap="BaseResultMap">
       select * from img
     </select>
   <select id="selectByImgPage" resultMap="BaseResultMap">

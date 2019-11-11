@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * ${Description}
  * @author Wang Xiaoping
- * @date 2019/11/8 9:52
+ * @date 2019/11/11 16:54
  */
 public interface ImgMapper {
     int deleteByPrimaryKey(Integer imgId);

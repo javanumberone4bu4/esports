@@ -78,4 +78,16 @@ public class SmServiceImpl implements ISmService {
 
         return null;
     }
+
+    @Override
+    public Result updateByUserTel(String smImage, String userTel) {
+        if(smImage==null||userTel==null){
+            return new DefaultResult(ResultCode.FAIL);
+        }
+        int i = smMapper.updateBySmImage(smImage, userTel);
+        if(i>0){
+            return new DefaultResult(ResultCode.SUCCESS);
+        }
+        return new DefaultResult(ResultCode.FAIL);
+    }
 }

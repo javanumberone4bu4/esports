@@ -10,6 +10,7 @@ import com.rimi.esports.service.ISmService;
 import com.rimi.esports.vo.SmVo;
 import com.rimi.esports.vo.SmVo2;
 import com.rimi.esports.vo.SmVo3;
+import com.rimi.esports.vo.SmVo4;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +85,47 @@ public class SmController {
     @PostMapping("/sm/weiXinShow")
     @ApiOperation(value = "查询个人信息")
     public ResultData selectBySmName(@RequestBody SmVo vo){
+
         return smService.selectBySmName(vo.getSmName());
+    }
+    @PostMapping("/sm/updateImage")
+    @ApiOperation(value = "修改头像")
+    public Result updateImage(@RequestBody SmVo4 vo4){
+        return smService.updateByUserTel(vo4.getSmImage(),vo4.getUserTel());
+    }
+    @PostMapping("/sm/weiXinEdit")
+    @ApiOperation(value = "微信编辑个人信息")
+    public Result updateByWeiXinTelephone(@RequestBody SmVo2 vo2){
+        Sm sm1 = smMapper.selectByTelephone(vo2.getUserTel());
+        if(sm1==null){
+            Sm sm2=new Sm();
+            if(vo2.getSmAge()!=null) {
+                sm2.setSmAge(Integer.parseInt(vo2.getSmAge()));
+            }else{
+                sm2.setSmAge(0);
+            }
+            sm2.setSmHobby(vo2.getSmHobby());
+            sm2.setSmName(vo2.getSmName());
+            sm2.setSmSex(vo2.getSmSex());
+            sm2.setSmAddress(vo2.getSmAddress());
+            sm2.setUserTel(vo2.getUserTel());
+            int i = smMapper.insertSelective(sm2);
+            if(i>0){
+                return new DefaultResult(ResultCode.SUCCESS);
+            }
+        }else {
+            if (vo2.getSmAge() != null) {
+                sm1.setSmAge(Integer.parseInt(vo2.getSmAge()));
+            } else {
+                sm1.setSmAge(0);
+            }
+            sm1.setSmHobby(vo2.getSmHobby());
+            sm1.setSmName(vo2.getSmName());
+            sm1.setSmSex(vo2.getSmSex());
+            sm1.setSmAddress(vo2.getSmAddress());
+            sm1.setUserTel(vo2.getUserTel());
+            return smService.updateByTelephone(sm1);
+        }
+        return new DefaultResult(ResultCode.SUCCESS);
     }
 }

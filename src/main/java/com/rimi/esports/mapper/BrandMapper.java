@@ -1,6 +1,9 @@
 package com.rimi.esports.mapper;
 
 import com.rimi.esports.beans.Brand;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * ${Description}
@@ -19,4 +22,16 @@ public interface BrandMapper {
     int updateByPrimaryKeySelective(Brand record);
 
     int updateByPrimaryKey(Brand record);
+
+    List<Brand> selectByBrandType(String brandType);
+
+    List<Brand> selectLikeBrandName(String brandName);
+
+    List<Brand> selectByBrandNameAndBrandBrandType();
+
+    List<Brand> selectByNameAndTypeAndLogoName();
+
+    List<Brand> selectByParam();
+
+    List<Brand> selectByCondition(@Param("brandType") String brandType,@Param("brandName")String brandName);
 }

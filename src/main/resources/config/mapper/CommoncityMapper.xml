@@ -118,4 +118,7 @@
       commonCity_location = #{commoncityLocation,jdbcType=VARCHAR}
     where commonCity_id = #{commoncityId,jdbcType=INTEGER}
   </update>
+    <select id="selectByLocation" resultMap="BaseResultMap">
+      select * from commoncity where commonCity_location like concat("%",#{commoncityLocation},"%")
+    </select>
 </mapper>

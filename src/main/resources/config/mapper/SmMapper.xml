@@ -241,4 +241,7 @@
     <select id="selectBySmName" resultMap="BaseResultMap">
       select * from sm where sm_name=#{smName}
     </select>
+  <update id="updateBySmImage">
+    update sm set sm_image=#{smImage} where user_tel=#{userTel}
+  </update>
 </mapper>

@@ -14,8 +14,8 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 聊天室
  *
- * @author shangzf
- * @date 2019/10/12 15:52
+ * @author Wang Xiaoping
+ * @date 2019/11/10 15:52
  */
 
 @ServerEndpoint("/chatroom/{username}")

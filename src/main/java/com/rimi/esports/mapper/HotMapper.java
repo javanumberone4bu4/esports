@@ -2,6 +2,8 @@ package com.rimi.esports.mapper;
 
 import com.rimi.esports.beans.Hot;
 
+import java.util.List;
+
 /**
  * ${Description}
  * @author Wang Xiaoping
@@ -19,4 +21,6 @@ public interface HotMapper {
     int updateByPrimaryKeySelective(Hot record);
 
     int updateByPrimaryKey(Hot record);
+
+    List<Hot> selectAll();
 }
