@@ -1,6 +1,7 @@
 package com.rimi.esports.mapper;
 
 import com.rimi.esports.beans.Shop;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,4 +25,8 @@ public interface ShopMapper {
     int updateByPrimaryKey(Shop record);
 
     List selectGoodsByShop(String userTel);
+
+    int deleteByGoods(@Param("goodsId") Integer goodsId,@Param("userTel") String userTel);
+
+    Shop selectByGoodsIdAndUserTel(@Param("goodsId") Integer goodsId,@Param("userTel") String userTel);
 }

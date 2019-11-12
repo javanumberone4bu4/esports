@@ -42,6 +42,18 @@ public class MarkServiceImpl implements IMarkService {
         return new DefaultResult(ResultCode.FAIL);
     }
 
+    @Override
+    public Mark selectMarkByUserTel(String userTel) {
+        if(userTel==null){
+            return null;
+        }
+        Mark mark = markMapper.selectByUserTel(userTel);
+        if(mark!=null){
+            return mark;
+        }
+        return null;
+    }
+
     /**
      * 搜索积分数
      *
@@ -59,7 +71,18 @@ public class MarkServiceImpl implements IMarkService {
             list.add(mark);
             return new DefaultResultData(list);
         }
-
         return null;
+    }
+
+    @Override
+    public Result updateMark(Mark mark) {
+        if(mark==null){
+            return new DefaultResult(ResultCode.FAIL);
+        }
+        int i = markMapper.updateByPrimaryKeySelective(mark);
+        if(i>0){
+            return new DefaultResult(ResultCode.SUCCESS);
+        }
+        return new DefaultResult(ResultCode.FAIL);
     }
 }

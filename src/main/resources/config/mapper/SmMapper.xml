@@ -18,6 +18,13 @@
     <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
     <result column="concernedUser" jdbcType="VARCHAR" property="concerneduser" />
     <result column="fans" jdbcType="INTEGER" property="fans" />
+    <association property="user" javaType="com.rimi.esports.beans.User">
+      <id column="user_id" jdbcType="INTEGER" property="userId" />
+      <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
+      <result column="password" jdbcType="VARCHAR" property="password" />
+      <result column="user_money" jdbcType="DECIMAL" property="userMoney" />
+      <result column="openId" jdbcType="VARCHAR" property="openid" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -238,10 +245,54 @@
   <select id="selectByTelephone" resultMap="BaseResultMap">
     select * from sm where user_tel=#{userTel}
   </select>
-    <select id="selectBySmName" resultMap="BaseResultMap">
-      select * from sm where sm_name=#{smName}
-    </select>
+
   <update id="updateBySmImage">
     update sm set sm_image=#{smImage} where user_tel=#{userTel}
   </update>
+  <select id="selectBySmNameWeiXin" resultMap="BaseResultMap">
+    select * from sm where sm_name=#{smName}
+  </select>
+  <select id="selectBySmName" resultType="List" resultMap="BaseResultMap">
+    select u.user_money as user_money,s.sm_name as sm_name,s.sm_realName as sm_realName,s.sm_email as sm_email,s.sm_sex as sm_sex,s.sm_age as sm_age,s.sm_hobby as sm_hobby,s.sm_job as sm_job,s.sm_address as sm_address,s.sm_image as sm_image,s.sm_mark as sm_mark,s.user_tel as user_tel from sm s join user u on s.user_tel=u.user_tel where sm_name=#{smName}
+  </select>
+  <select id="selectWeiXinMessage" resultMap="BaseResultMap">
+    select * from sm where sm_name=#{smName}
+  </select>
+  <update id="updateBySmName" parameterType="com.rimi.esports.beans.Sm">
+    update sm
+    <set>
+      <if test="smRealname != null">
+        sm_realName = #{smRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="smEmail != null">
+        sm_email = #{smEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="smSex != null">
+        sm_sex = #{smSex,jdbcType=VARCHAR},
+      </if>
+      <if test="smAge != null">
+        sm_age = #{smAge,jdbcType=INTEGER},
+      </if>
+      <if test="smJob != null">
+        sm_job = #{smJob,jdbcType=VARCHAR},
+      </if>
+      <if test="smHobby != null">
+        sm_hobby = #{smHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="smAddress != null">
+        sm_address = #{smAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="smImage != null">
+        sm_image = #{smImage,jdbcType=VARCHAR},
+      </if>
+      <if test="smMark != null">
+        sm_mark = #{smMark,jdbcType=INTEGER},
+      </if>
+      <if test="userTel != null">
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sm_name = #{smName,jdbcType=VARCHAR}
+  </update>
+
 </mapper>

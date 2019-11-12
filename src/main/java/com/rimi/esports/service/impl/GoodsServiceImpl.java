@@ -77,4 +77,24 @@ public class GoodsServiceImpl implements IGoodsService {
         }
         return null;
     }
+
+    @Override
+    public ResultData selectByPrimaryKey(Integer goodsId) {
+        Goods goods = goodsMapper.selectByPrimaryKey(goodsId);
+        if(goods!=null){
+            list=new ArrayList();
+            list.add(goods);
+            return new DefaultResultData(list);
+        }
+        return null;
+    }
+
+    @Override
+    public ResultData selectPcGoods(String brandLogoname) {
+        List list = goodsMapper.selectPcGoods(brandLogoname);
+        if(list!=null&&list.size()>0){
+            return new DefaultResultData(list);
+        }
+        return null;
+    }
 }

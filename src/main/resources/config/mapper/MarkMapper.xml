@@ -83,6 +83,6 @@
     where mark_id = #{markId,jdbcType=INTEGER}
   </update>
     <select id="selectByUserTel" resultType="com.rimi.esports.beans.Mark">
-      select mark_score from mark where user_tel=#{userTel}
+      select * from mark where user_tel=#{userTel}
     </select>
 </mapper>

@@ -21,4 +21,8 @@ public interface IMarkService {
      * @return 结果集数据
      */
     ResultData selectByUserTel(String userTel);
+
+    Mark selectMarkByUserTel(String userTel);
+
+    Result updateMark(Mark mark);
 }

@@ -3,6 +3,8 @@ package com.rimi.esports.mapper;
 import com.rimi.esports.beans.Sm;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * ${Description}
  * @author Wang Xiaoping
@@ -25,7 +27,13 @@ public interface SmMapper {
 
     Sm selectByTelephone(String userTel);
 
-    Sm selectBySmName(String name);
+    List selectBySmName(String smName);
 
     int updateBySmImage(@Param("smImage") String smIMage, @Param("userTel") String userTel);
+
+    Sm selectBySmNameWeiXin(String smName);
+
+    Sm selectWeiXinMessage(String smName);
+
+    int updateBySmName(Sm sm);
 }

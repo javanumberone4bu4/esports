@@ -27,4 +27,10 @@ public interface GoodsMapper {
     Goods selectByUserTel(String goodsSource);
 
     List<Goods> selectByParam();
+
+    List selectPcGoods(String brandLogoname);
+
+
+
+
 }

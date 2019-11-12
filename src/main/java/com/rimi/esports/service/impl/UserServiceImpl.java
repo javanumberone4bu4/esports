@@ -225,11 +225,12 @@ public class UserServiceImpl implements IUserService {
         user1.setOpenid(openId);
         int i = userMapper.insertSelective(user1);
         if(i>0){
+            sm.setUserTel(String.valueOf(b));
             int i1 = smMapper.insertSelective(sm);
             if(i1>0){
                 return new DefaultResult(ResultCode.SUCCESS);
             }
         }
-        return new DefaultResult(ResultCode.FAIL);
+        return new DefaultResult(ResultCode.SUCCESS);
     }
 }

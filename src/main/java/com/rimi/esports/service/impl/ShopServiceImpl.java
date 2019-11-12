@@ -1,7 +1,7 @@
 package com.rimi.esports.service.impl;
 
-import com.rimi.esports.common.DefaultResultData;
-import com.rimi.esports.common.ResultData;
+import com.rimi.esports.beans.Shop;
+import com.rimi.esports.common.*;
 import com.rimi.esports.mapper.ShopMapper;
 import com.rimi.esports.service.IShopService;
 import org.springframework.stereotype.Service;
@@ -29,5 +29,49 @@ public class ShopServiceImpl implements IShopService {
             return new DefaultResultData(list);
         }
         return null;
+    }
+
+    @Override
+    public Result insertShopCar(Shop shop) {
+        int i = shopMapper.insertSelective(shop);
+        if(i>0){
+            return new DefaultResult(ResultCode.SUCCESS);
+        }
+        return new DefaultResult(ResultCode.FAIL);
+    }
+
+    @Override
+    public Result deleteByGoodsId(Integer goodsId,String userTel) {
+        int i = shopMapper.deleteByGoods(goodsId,userTel);
+        if(i>0){
+            return new DefaultResult(ResultCode.SUCCESS);
+        }
+        return new DefaultResult(ResultCode.FAIL);
+    }
+
+    @Override
+    public Result deleteByIds(String[] ids,String userTel) {
+        for (String id : ids) {
+            deleteByGoodsId(Integer.valueOf(id), userTel);
+        }
+        return new DefaultResult(ResultCode.SUCCESS);
+    }
+
+    @Override
+    public Shop selectByGoodsIdAndUserTel(Integer goodsId,String userTel) {
+        Shop shop = shopMapper.selectByGoodsIdAndUserTel(goodsId,userTel);
+        if(shop!=null){
+            return shop;
+        }
+        return null;
+    }
+
+    @Override
+    public Result updateByPrimaryKeySelective(Shop shop) {
+        int i = shopMapper.updateByPrimaryKeySelective(shop);
+        if(i>0){
+            return new DefaultResult(ResultCode.SUCCESS);
+        }
+        return new DefaultResult(ResultCode.FAIL);
     }
 }

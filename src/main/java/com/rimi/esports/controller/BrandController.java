@@ -60,6 +60,9 @@ public class BrandController {
     }
     @GetMapping("/brand/classify")
     public ResultData selectByCondition(BrandVo2 vo2){
+        if("全部分类".equals(vo2.getBrandType())){
+           // vo2.getBrandType()=null;
+        }
       return brandService.selectByCondition(vo2.getBrandType(),vo2.getBrandName());
     }
 }

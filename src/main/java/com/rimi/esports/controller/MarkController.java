@@ -1,7 +1,9 @@
 package com.rimi.esports.controller;
 
 import com.rimi.esports.beans.Mark;
+import com.rimi.esports.common.DefaultResult;
 import com.rimi.esports.common.Result;
+import com.rimi.esports.common.ResultCode;
 import com.rimi.esports.common.ResultData;
 import com.rimi.esports.service.IMarkService;
 import com.rimi.esports.vo.MarkVo;
@@ -29,6 +31,12 @@ public class MarkController {
     @PostMapping("/mark/insert")
     @ApiOperation(value = "根据传入参数计算积分并插入")
     public Result insertMark(@RequestBody MarkVo vo){
+        Mark mark1 = markService.selectMarkByUserTel(vo.getUserTel());
+        if(mark1!=null){
+            mark1.setMarkScore(mark1.getMarkScore()+Integer.parseInt(vo.getMarkSource())*20);
+            mark1.setMarkSource(vo.getMarkSource());
+            return markService.updateMark(mark1);
+        }
         Mark mark=new Mark();
         mark.setUserTel(vo.getUserTel());
         int score = Integer.parseInt(vo.getMarkSource()) * 20;

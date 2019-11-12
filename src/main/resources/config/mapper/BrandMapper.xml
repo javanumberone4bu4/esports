@@ -106,7 +106,7 @@
       select brand_name,brand_type,brand_logoName,brand_logo from brand
     </select>
   <select id="selectByParam" resultMap="BaseResultMap">
-    select brand_name,brand_type,brand_logoName from brand where brand_id between 15 and 25
+    select brand_name,brand_type,brand_logoName,brand_logo from brand order by rand() limit 10
   </select>
   <select id="selectByCondition" resultMap="BaseResultMap">
     select * from brand  <where>

@@ -97,5 +97,7 @@ public class Sm implements Serializable {
     @ApiModelProperty(value="粉丝数")
     private Integer fans;
 
+    private User user;
+
     private static final long serialVersionUID = 1L;
 }

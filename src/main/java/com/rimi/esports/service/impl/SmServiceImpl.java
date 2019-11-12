@@ -20,7 +20,6 @@ import java.util.List;
 public class SmServiceImpl implements ISmService {
     private SmMapper smMapper;
     private List list;
-
     public SmServiceImpl(SmMapper smMapper) {
         this.smMapper = smMapper;
     }
@@ -30,7 +29,7 @@ public class SmServiceImpl implements ISmService {
         if(sm==null){
             return new DefaultResult(ResultCode.FAIL);
         }
-        int i = smMapper.updateByTelephone(sm);
+        int i = smMapper.updateBySmName(sm);
         if(i>0){
             return new DefaultResult(ResultCode.SUCCESS);
         }
@@ -69,10 +68,8 @@ public class SmServiceImpl implements ISmService {
         if(smName==null){
             return null;
         }
-        Sm sm = smMapper.selectBySmName(smName);
-        if(sm!=null){
-            list=new ArrayList();
-            list.add(sm);
+        List list = smMapper.selectBySmName(smName);
+        if(list!=null&&list.size()>0){
             return new DefaultResultData(list);
         }
 
@@ -89,5 +86,25 @@ public class SmServiceImpl implements ISmService {
             return new DefaultResult(ResultCode.SUCCESS);
         }
         return new DefaultResult(ResultCode.FAIL);
+    }
+
+    @Override
+    public Sm selectBySmNameWeiXin(String smName) {
+        Sm sm = smMapper.selectBySmNameWeiXin(smName);
+        if(sm!=null){
+            return sm;
+        }
+        return null;
+    }
+
+    @Override
+    public ResultData selectWeiXinMessage(String smName) {
+        Sm sm = smMapper.selectWeiXinMessage(smName);
+        if(sm!=null){
+            list=new ArrayList();
+            list.add(sm);
+            return new DefaultResultData(list);
+        }
+        return null;
     }
 }

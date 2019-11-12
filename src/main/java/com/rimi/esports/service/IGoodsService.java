@@ -28,4 +28,8 @@ public interface IGoodsService {
 
     ResultData guessLike();
 
+    ResultData selectByPrimaryKey(Integer goodsId);
+
+    ResultData selectPcGoods(String brandLogoname);
+
 }

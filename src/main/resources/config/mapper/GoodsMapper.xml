@@ -208,12 +208,16 @@
     where goods_id = #{goodsId,jdbcType=INTEGER}
   </update>
   <select id="selectAll" resultMap="BaseResultMap">
-    select * from goods
+    select * from goods order by rand() limit 9
   </select>
   <select id="selectByUserTel" resultMap="BaseResultMap">
     select * from goods where goods_source=#{goodsSource}
   </select>
     <select id="selectByParam" resultMap="BaseResultMap">
-      select goods_name,goods_classify,goods_description,goods_photo,goods_price,goods_property from goods where goods_id between 1 and 4
+      select goods_name,goods_classify,goods_description,goods_photo,goods_price,goods_property from goods order by rand() limit 4
     </select>
+  <select id="selectPcGoods" resultType="java.util.List" resultMap="BaseResultMap">
+   select g.goods_photo as goods_photo,g.goods_id as goods_id,g.goods_name as goods_name,g.goods_price,g.goods_showTime as goods_showTime,g.goods_description as goods_description,g.goods_upTime as goods_upTime,g.goods_property as goods_property,g.goods_num as goods_num,b.brand_logoName as brand_logoName FROM goods g join brand b on g.brand_id=b.brand_id where b.brand_logoName like concat("%",#{brandLogoname},"%")
+  </select>
+
 </mapper>

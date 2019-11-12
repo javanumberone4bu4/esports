@@ -14,4 +14,6 @@ public interface ISmService {
     Result save(Sm sm);
     ResultData selectBySmName(String smName);
     Result updateByUserTel(String smImage,String userTel);
+    Sm selectBySmNameWeiXin(String smName);
+    ResultData selectWeiXinMessage(String smName);
 }
