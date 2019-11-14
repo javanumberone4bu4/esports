@@ -116,4 +116,13 @@ public class BrandServiceImpl implements IBrandService {
         }
         return null;
     }
+
+    @Override
+    public Brand selectToOrders(String brandType, String brandName) {
+        Brand brand = brandMapper.selectToOrders(brandType, brandName);
+        if(brand!=null){
+            return brand;
+        }
+        return null;
+    }
 }

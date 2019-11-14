@@ -173,3 +173,23 @@ create table esports.img(
  img_path varchar(100) not  null comment '存的路径',
  primary key(img_id)
 )engine=InnoDB comment '图片路径表';
+
+drop table if exists esports.repository;
+create table esports.repository(
+  r_id int not null auto_increment comment 'ID',
+  r_gid int not null comment '商品ID',
+  r_gsource varchar(20) default null comment '商品来源',
+  r_gname varchar(50) default null comment '商品名字',
+  r_gphoto varchar(255) default null comment '商品图片',
+  r_gprice double default 0.0 comment '商品单价',
+  r_bid int not null comment '品牌ID',
+  r_gclassify varchar(255) default null comment '商品分类',
+  r_gshowtime varchar (50) default null comment '商品特性',
+  r_gdescription varchar (255) default null comment '商品描述',
+  r_guptime varchar (50) default null comment '商品特性2',
+  r_glocation varchar (50) default null comment '商品发货位置',
+  r_gnum int default 0 comment '商品数量',
+  r_gpricesum double default 0.0 comment '商品小计',
+  r_gproperty varchar (100) default null comment '商品属性',
+  primary key(r_id)
+)engine=InnoDB comment '库存表';

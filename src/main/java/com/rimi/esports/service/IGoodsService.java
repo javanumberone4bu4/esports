@@ -32,4 +32,12 @@ public interface IGoodsService {
 
     ResultData selectPcGoods(String brandLogoname);
 
+    Result meRentGoods(Goods goods);
+
+    Goods selectBySource(String goodsSource);
+
+    ResultData selectPcGoodsBy(String brandLogoname);
+
+    ResultData selectGoodsAll();
+
 }

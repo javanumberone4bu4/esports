@@ -74,6 +74,43 @@ public class SmController {
         }
         return new DefaultResult(ResultCode.SUCCESS);
     }
+    @GetMapping("/sm/edit2")
+    @ApiOperation(value = "编辑个人信息收货地址")
+    public Result updateByTelephone2( SmVo2 vo2){
+        Sm sm1 = smMapper.selectByTelephone(vo2.getUserTel());
+        if(sm1==null){
+            Sm sm2=new Sm();
+            if(vo2.getSmAge()!=null) {
+                sm2.setSmAge(Integer.parseInt(vo2.getSmAge()));
+            }else{
+                sm2.setSmAge(0);
+            }
+            sm2.setSmHobby(vo2.getSmHobby());
+            sm2.setSmName(vo2.getSmName());
+            sm2.setSmSex(vo2.getSmSex());
+            sm2.setSmAddress(vo2.getSmAddress());
+            sm2.setUserTel(vo2.getUserTel());
+            sm2.setSmJob(vo2.getSmJob());
+            int i = smMapper.insertSelective(sm2);
+            if(i>0){
+                return new DefaultResult(ResultCode.SUCCESS);
+            }
+        }else {
+            //if (vo2.getSmAge() != null) {
+            //    sm1.setSmAge(Integer.parseInt(vo2.getSmAge()));
+            //} else {
+            //    sm1.setSmAge(0);
+            //}
+            //sm1.setSmHobby(vo2.getSmHobby());
+            //sm1.setSmName(vo2.getSmName());
+            //sm1.setSmSex(vo2.getSmSex());
+            sm1.setSmAddress(vo2.getOrdersGetAddress());
+            //sm1.setUserTel(vo2.getUserTel());
+            //sm1.setSmJob(vo2.getSmJob());
+            return smService.updateByTelephone(sm1);
+        }
+        return new DefaultResult(ResultCode.SUCCESS);
+    }
     @PostMapping("/sm/save")
     @ApiOperation(value = "保存个人信息")
     public Result save(@RequestBody Sm sm){
@@ -146,7 +183,12 @@ public class SmController {
             //sm1.setSmSex(vo2.getSmSex());
             sm1.setSmAddress(vo2.getSmAddress());
             sm1.setUserTel(vo2.getUserTel());
-            return smService.updateByTelephone(sm1);
+            int i1 = smMapper.updateByPrimaryKeySelective(sm1);
+            if(i1>0){
+                return new DefaultResult(ResultCode.SUCCESS);
+            }else{
+                return new DefaultResult(ResultCode.FAIL);
+            }
         }
         return new DefaultResult(ResultCode.SUCCESS);
     }

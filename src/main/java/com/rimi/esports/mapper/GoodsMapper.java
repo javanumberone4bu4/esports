@@ -28,7 +28,11 @@ public interface GoodsMapper {
 
     List<Goods> selectByParam();
 
-    List selectPcGoods(String brandLogoname);
+    List selectPcGoods(String goodsName);
+
+    List selectPcGoodsBy(String brandLogoname);
+
+    List<Goods> selectAll2();
 
 
 

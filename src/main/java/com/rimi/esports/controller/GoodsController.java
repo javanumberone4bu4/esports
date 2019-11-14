@@ -1,15 +1,15 @@
 package com.rimi.esports.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.rimi.esports.beans.Brand;
 import com.rimi.esports.beans.Goods;
 import com.rimi.esports.common.Result;
 import com.rimi.esports.common.ResultData;
+import com.rimi.esports.service.IBrandService;
 import com.rimi.esports.service.IGoodsService;
-import com.rimi.esports.vo.BrandVo3;
-import com.rimi.esports.vo.GoodsVo;
-import com.rimi.esports.vo.GoodsVo1;
-import com.rimi.esports.vo.GoodsVo2;
+import com.rimi.esports.vo.*;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class GoodsController {
     private IGoodsService goodsService;
+    @Autowired
+    private IBrandService brandService;
 
     public GoodsController(IGoodsService goodsService) {
         this.goodsService = goodsService;
@@ -30,7 +32,15 @@ public class GoodsController {
     @PostMapping("/goods/save")
     @ApiOperation(value = "微信端保存商品信息")
     public Result save(@RequestBody GoodsVo vo){
+
         Goods goods=new Goods();
+        goods.setGoodsName(vo.getGoodsName());
+        Brand brand = brandService.selectToOrders(vo.getGoodsClassify(), vo.getBrandName());
+        if(brand==null){
+            goods.setBrandId(14);
+        }else{
+            goods.setBrandId(brand.getBrandId());
+        }
         goods.setGoodsSource(vo.getGoodsSource());
         goods.setGoodsPhoto(vo.getGoodsPhoto());
         goods.setGoodsLocation(vo.getGoodsLocation());
@@ -66,6 +76,27 @@ public class GoodsController {
     @GetMapping("/goods/selectPcGoods")
     @ApiOperation(value = "根据品牌类型名字查找相应的商品")
     public ResultData selectPcGoods(BrandVo3 vo3){
-        return goodsService.selectPcGoods(vo3.getBrandLogoname());
+
+        return goodsService.selectPcGoods(vo3.getGoodsName());
     }
+    @GetMapping("/goods/selectPcGoods2")
+    @ApiOperation(value = "根据品牌类型名字查找相应的商品")
+    public ResultData selectPcGoodsBy(BrandVo3 vo3){
+
+        return goodsService.selectPcGoodsBy(vo3.getBrandLogoname());
+    }
+    //@PostMapping("/goods/meRent")
+    //@ApiOperation(value = "我要出租,保存商品")
+    //public Result meRentGoods(@RequestBody GoodsVo3 vo3){
+    //    Goods goods = goodsService.selectBySource(vo3.getGoodsSource());
+    //    if(goods!=null){
+    //
+    //    }
+    //}
+    @GetMapping("/goods/selectGoodsAll")
+    @ApiOperation(value = "查找所有商品")
+    public ResultData selectPcGoodsBy2(){
+        return goodsService.selectGoodsAll();
+    }
+
 }

@@ -16,4 +16,5 @@ public class SmVo2 {
     private String userTel;
     private String smJob;
     private String number;
+    private String ordersGetAddress;
 }

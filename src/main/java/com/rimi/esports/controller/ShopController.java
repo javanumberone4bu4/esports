@@ -38,13 +38,8 @@ public class ShopController {
     public Result insertShopCar(ShopVo1 vo1){
         Shop shop1 = shopService.selectByGoodsIdAndUserTel(Integer.parseInt(vo1.getGoodsId()),vo1.getUserTel());
         if(shop1!=null){
-            Goods goods = goodsMapper.selectByPrimaryKey(Integer.parseInt(vo1.getGoodsId()));
-            goods.setGoodsNum(goods.getGoodsNum()+Integer.parseInt(vo1.getShopGoodsnum()));
-            int i = goodsMapper.updateByPrimaryKeySelective(goods);
-            if(i>0){
-                return new DefaultResult(ResultCode.SUCCESS);
-            }
-            return new DefaultResult(ResultCode.FAIL);
+           shop1.setShopGoodsnum(shop1.getShopGoodsnum()+Integer.parseInt(vo1.getShopGoodsnum()));
+           return shopService.updateByPrimaryKeySelective(shop1);
         }
         Shop shop=new Shop();
         shop.setGoodsId(Integer.parseInt(vo1.getGoodsId()));
@@ -69,14 +64,12 @@ public class ShopController {
         if(shop==null){
             return new DefaultResult(ResultCode.FAIL);
         }
-        Goods goods = goodsMapper.selectByPrimaryKey(Integer.parseInt(vo1.getGoodsId()));
-        goods.setGoodsNum(Integer.parseInt(vo1.getShopGoodsnum()));
-        //shop.setShopGoodsnum(Integer.parseInt(vo1.getShopGoodsnum()));
-        //return shopService.updateByPrimaryKeySelective(shop);
-        int i = goodsMapper.updateByPrimaryKeySelective(goods);
-        if(i>0){
-            return new DefaultResult(ResultCode.SUCCESS);
-        }
-        return new DefaultResult(ResultCode.FAIL);
+        shop.setShopGoodsnum(Integer.parseInt(vo1.getShopGoodsnum()));
+        return shopService.updateByPrimaryKeySelective(shop);
+    }
+    @PostMapping("/shop/deleteByIds2")
+    @ApiOperation(value = "批量删除微信")
+    public Result deleteByIds2(@RequestBody ShopVo2 vo2){
+        return shopService.deleteWeixin(vo2.getIds2(), vo2.getUserTel());
     }
 }

@@ -11,4 +11,6 @@ public class ShopVo1 {
     private String userTel;
     private String goodsId;
     private String shopGoodsnum;
+    private String goodsPricesum;
+    private String goodsSource;
 }

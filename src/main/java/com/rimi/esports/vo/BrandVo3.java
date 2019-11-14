@@ -8,5 +8,6 @@ import lombok.Data;
  */
 @Data
 public class BrandVo3 {
+    private String goodsName;
     private String brandLogoname;
 }

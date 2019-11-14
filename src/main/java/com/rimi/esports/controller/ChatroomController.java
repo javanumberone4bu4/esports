@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2019/11/10 15:52
  */
 
-@ServerEndpoint("/chatroom/{username}")
+@ServerEndpoint("/chatroom/{userTel}")
 @CrossOrigin
 public class ChatroomController {
 
@@ -28,26 +28,26 @@ public class ChatroomController {
     private static Map<String, ChatroomController> clients = new ConcurrentHashMap<>();
     private static int onlineCount = 0;
     private Session session;
-    private String username;
+    private String userTel;
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("username") String username) {
-        if (!clients.containsKey(username)) {
+    public void onOpen(Session session, @PathParam("userTel") String userTel) {
+        if (!clients.containsKey(userTel)) {
             this.session = session;
-            this.username = username;
-            clients.put(username, this);
+            this.userTel = userTel;
+            clients.put(userTel, this);
             addOnlineCount();
             // 发送消息
-            sendMessage(getResult("系统", this.username + "上线了"));
+            sendMessage(getResult("系统", this.userTel + "上线了"));
         }
     }
 
     @OnClose
-    public void onClose(@PathParam("username") String username) {
-        if (clients.containsKey(username)) {
-            clients.remove(username);
+    public void onClose(@PathParam("userTel") String userTel) {
+        if (clients.containsKey(userTel)) {
+            clients.remove(userTel);
             removeOnlineCount();
-            sendMessage(getResult("系统", this.username + "下线了"));
+            sendMessage(getResult("系统", this.userTel + "下线了"));
         }
     }
 
@@ -63,20 +63,23 @@ public class ChatroomController {
      */
     @OnMessage
     public void onMessage(String message) {
-        sendMessage(getResult(this.username, message));
+        //JSONObject jsonObject=new JSONObject();
+        //jsonObject.put("userTel",this.userTel);
+        //jsonObject.put("message",message);
+        sendMessage(getResult(this.userTel,message));
     }
 
     /**
      * 绑定消息体内容
-     * @param username 消息的来源
+     * @param userTel 消息的来源
      * @param msg 消息的内容
      * @return
      */
-    public String getResult(String username, String msg) {
+    public String getResult(String userTel, String msg) {
         Message message = new Message();
-        message.setName(username);
+        message.setName(userTel);
         message.setData(msg);
-        message.setTimes(System.currentTimeMillis());
+        //message.setTimes(System.currentTimeMillis());
         Result0 result = new Result0();
         result.setMessage(message);
         result.setOnline(clients.keySet());

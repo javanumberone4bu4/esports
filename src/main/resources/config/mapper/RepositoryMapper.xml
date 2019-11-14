@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rimi.esports.mapper.RepositoryMapper">
+  <resultMap id="BaseResultMap" type="com.rimi.esports.beans.Repository">
+    <!--@mbg.generated-->
+    <!--@Table repository-->
+    <id column="r_id" jdbcType="INTEGER" property="rId" />
+    <result column="r_gid" jdbcType="INTEGER" property="rGid" />
+    <result column="r_gsource" jdbcType="VARCHAR" property="rGsource" />
+    <result column="r_gname" jdbcType="VARCHAR" property="rGname" />
+    <result column="r_gphoto" jdbcType="VARCHAR" property="rGphoto" />
+    <result column="r_gprice" jdbcType="DOUBLE" property="rGprice" />
+    <result column="r_bid" jdbcType="INTEGER" property="rBid" />
+    <result column="r_gclassify" jdbcType="VARCHAR" property="rGclassify" />
+    <result column="r_gshowtime" jdbcType="VARCHAR" property="rGshowtime" />
+    <result column="r_gdescription" jdbcType="VARCHAR" property="rGdescription" />
+    <result column="r_guptime" jdbcType="VARCHAR" property="rGuptime" />
+    <result column="r_glocation" jdbcType="VARCHAR" property="rGlocation" />
+    <result column="r_gnum" jdbcType="INTEGER" property="rGnum" />
+    <result column="r_gpricesum" jdbcType="DOUBLE" property="rGpricesum" />
+    <result column="r_gproperty" jdbcType="VARCHAR" property="rGproperty" />
+    <collection property="list" ofType="com.rimi.esports.beans.Goods">
+      <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+      <result column="goods_source" jdbcType="VARCHAR" property="goodsSource" />
+      <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+      <result column="goods_photo" jdbcType="VARCHAR" property="goodsPhoto" />
+      <result column="goods_price" jdbcType="DOUBLE" property="goodsPrice" />
+      <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+      <result column="goods_classify" jdbcType="VARCHAR" property="goodsClassify" />
+      <result column="goods_showTime" jdbcType="VARCHAR" property="goodsShowtime" />
+      <result column="goods_description" jdbcType="VARCHAR" property="goodsDescription" />
+      <result column="goods_upTime" jdbcType="VARCHAR" property="goodsUptime" />
+      <result column="goods_location" jdbcType="VARCHAR" property="goodsLocation" />
+      <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+      <result column="goods_priceSum" jdbcType="DOUBLE" property="goodsPricesum" />
+      <result column="goods_property" jdbcType="VARCHAR" property="goodsProperty" />
+      <association property="brand" javaType="com.rimi.esports.beans.Brand" >
+        <id column="brand_id" jdbcType="INTEGER" property="brandId"  />
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName" />
+        <result column="brand_logo" jdbcType="VARCHAR" property="brandLogo" />
+        <result column="brand_type" jdbcType="VARCHAR" property="brandType" />
+        <result column="brand_logoName" jdbcType="VARCHAR" property="brandLogoname" />
+      </association>
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    r_id, r_gid, r_gsource, r_gname, r_gphoto, r_gprice, r_bid, r_gclassify, r_gshowtime, 
+    r_gdescription, r_guptime, r_glocation, r_gnum, r_gpricesum, r_gproperty
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from repository
+    where r_id = #{rId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from repository
+    where r_id = #{rId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="r_id" keyProperty="rId" parameterType="com.rimi.esports.beans.Repository" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into repository (r_gid, r_gsource, r_gname, 
+      r_gphoto, r_gprice, r_bid, 
+      r_gclassify, r_gshowtime, r_gdescription, 
+      r_guptime, r_glocation, r_gnum, 
+      r_gpricesum, r_gproperty)
+    values (#{rGid,jdbcType=INTEGER}, #{rGsource,jdbcType=VARCHAR}, #{rGname,jdbcType=VARCHAR}, 
+      #{rGphoto,jdbcType=VARCHAR}, #{rGprice,jdbcType=DOUBLE}, #{rBid,jdbcType=INTEGER}, 
+      #{rGclassify,jdbcType=VARCHAR}, #{rGshowtime,jdbcType=VARCHAR}, #{rGdescription,jdbcType=VARCHAR}, 
+      #{rGuptime,jdbcType=VARCHAR}, #{rGlocation,jdbcType=VARCHAR}, #{rGnum,jdbcType=INTEGER}, 
+      #{rGpricesum,jdbcType=DOUBLE}, #{rGproperty,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="r_id" keyProperty="rId" parameterType="com.rimi.esports.beans.Repository" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into repository
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rGid != null">
+        r_gid,
+      </if>
+      <if test="rGsource != null">
+        r_gsource,
+      </if>
+      <if test="rGname != null">
+        r_gname,
+      </if>
+      <if test="rGphoto != null">
+        r_gphoto,
+      </if>
+      <if test="rGprice != null">
+        r_gprice,
+      </if>
+      <if test="rBid != null">
+        r_bid,
+      </if>
+      <if test="rGclassify != null">
+        r_gclassify,
+      </if>
+      <if test="rGshowtime != null">
+        r_gshowtime,
+      </if>
+      <if test="rGdescription != null">
+        r_gdescription,
+      </if>
+      <if test="rGuptime != null">
+        r_guptime,
+      </if>
+      <if test="rGlocation != null">
+        r_glocation,
+      </if>
+      <if test="rGnum != null">
+        r_gnum,
+      </if>
+      <if test="rGpricesum != null">
+        r_gpricesum,
+      </if>
+      <if test="rGproperty != null">
+        r_gproperty,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rGid != null">
+        #{rGid,jdbcType=INTEGER},
+      </if>
+      <if test="rGsource != null">
+        #{rGsource,jdbcType=VARCHAR},
+      </if>
+      <if test="rGname != null">
+        #{rGname,jdbcType=VARCHAR},
+      </if>
+      <if test="rGphoto != null">
+        #{rGphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="rGprice != null">
+        #{rGprice,jdbcType=DOUBLE},
+      </if>
+      <if test="rBid != null">
+        #{rBid,jdbcType=INTEGER},
+      </if>
+      <if test="rGclassify != null">
+        #{rGclassify,jdbcType=VARCHAR},
+      </if>
+      <if test="rGshowtime != null">
+        #{rGshowtime,jdbcType=VARCHAR},
+      </if>
+      <if test="rGdescription != null">
+        #{rGdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="rGuptime != null">
+        #{rGuptime,jdbcType=VARCHAR},
+      </if>
+      <if test="rGlocation != null">
+        #{rGlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="rGnum != null">
+        #{rGnum,jdbcType=INTEGER},
+      </if>
+      <if test="rGpricesum != null">
+        #{rGpricesum,jdbcType=DOUBLE},
+      </if>
+      <if test="rGproperty != null">
+        #{rGproperty,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rimi.esports.beans.Repository">
+    <!--@mbg.generated-->
+    update repository
+    <set>
+      <if test="rGid != null">
+        r_gid = #{rGid,jdbcType=INTEGER},
+      </if>
+      <if test="rGsource != null">
+        r_gsource = #{rGsource,jdbcType=VARCHAR},
+      </if>
+      <if test="rGname != null">
+        r_gname = #{rGname,jdbcType=VARCHAR},
+      </if>
+      <if test="rGphoto != null">
+        r_gphoto = #{rGphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="rGprice != null">
+        r_gprice = #{rGprice,jdbcType=DOUBLE},
+      </if>
+      <if test="rBid != null">
+        r_bid = #{rBid,jdbcType=INTEGER},
+      </if>
+      <if test="rGclassify != null">
+        r_gclassify = #{rGclassify,jdbcType=VARCHAR},
+      </if>
+      <if test="rGshowtime != null">
+        r_gshowtime = #{rGshowtime,jdbcType=VARCHAR},
+      </if>
+      <if test="rGdescription != null">
+        r_gdescription = #{rGdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="rGuptime != null">
+        r_guptime = #{rGuptime,jdbcType=VARCHAR},
+      </if>
+      <if test="rGlocation != null">
+        r_glocation = #{rGlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="rGnum != null">
+        r_gnum = #{rGnum,jdbcType=INTEGER},
+      </if>
+      <if test="rGpricesum != null">
+        r_gpricesum = #{rGpricesum,jdbcType=DOUBLE},
+      </if>
+      <if test="rGproperty != null">
+        r_gproperty = #{rGproperty,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rimi.esports.beans.Repository">
+    <!--@mbg.generated-->
+    update repository
+    set r_gid = #{rGid,jdbcType=INTEGER},
+      r_gsource = #{rGsource,jdbcType=VARCHAR},
+      r_gname = #{rGname,jdbcType=VARCHAR},
+      r_gphoto = #{rGphoto,jdbcType=VARCHAR},
+      r_gprice = #{rGprice,jdbcType=DOUBLE},
+      r_bid = #{rBid,jdbcType=INTEGER},
+      r_gclassify = #{rGclassify,jdbcType=VARCHAR},
+      r_gshowtime = #{rGshowtime,jdbcType=VARCHAR},
+      r_gdescription = #{rGdescription,jdbcType=VARCHAR},
+      r_guptime = #{rGuptime,jdbcType=VARCHAR},
+      r_glocation = #{rGlocation,jdbcType=VARCHAR},
+      r_gnum = #{rGnum,jdbcType=INTEGER},
+      r_gpricesum = #{rGpricesum,jdbcType=DOUBLE},
+      r_gproperty = #{rGproperty,jdbcType=VARCHAR}
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+    <select id="selectRepository" resultType="java.util.List" resultMap="BaseResultMap">
+      select r.r_gid as r_gid,r.r_gsource as r_gsource,r.r_gname as r_gname,r.r_gphoto as r_gphoto,r.r_gprice as r_gprice,
+      r.r_bid as r_bid,r.r_gclassify as r_gclassify,r.r_gshowtime as r_gshowtime,r.r_gdescription as r_gdescription,r.r_guptime as r_guptime,
+      r.r_glocation as r_glocation,r.r_gnum as r_gnum,r.r_gpricesum as r_gpricesum,r.r_gproperty as r_gproperty,
+      b.brand_name as brand_name,b.brand_logo as brand_logo,b.brand_type as brand_type,b.brand_logoName as brand_logoName from repository r join brand b
+      on r.r_bid=b.brand_id
+    </select>
+</mapper>

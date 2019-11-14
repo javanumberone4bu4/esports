@@ -29,7 +29,7 @@ public class SmServiceImpl implements ISmService {
         if(sm==null){
             return new DefaultResult(ResultCode.FAIL);
         }
-        int i = smMapper.updateBySmName(sm);
+        int i = smMapper.updateByTelephone(sm);
         if(i>0){
             return new DefaultResult(ResultCode.SUCCESS);
         }

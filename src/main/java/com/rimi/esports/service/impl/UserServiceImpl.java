@@ -170,13 +170,14 @@ public class UserServiceImpl implements IUserService {
         if (user.getUserMoney().doubleValue() < userMoney.doubleValue()) {
             return new DefaultResult(ResultCode.FAIL);
         }
+
         user.setUserMoney(user.getUserMoney().subtract(userMoney));
         // 4.转入账号加钱
         user1.setUserMoney(user1.getUserMoney().add(userMoney));
         // 5.更新转入账号
         userMapper.updateUserMoney(user1);
 
-        //int i = 1 / 0;
+        // int i = 1 / 0;
 
         // 6.更新转出账号
         userMapper.updateUserMoney(user);

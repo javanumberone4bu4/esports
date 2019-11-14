@@ -58,6 +58,14 @@ public class ShopServiceImpl implements IShopService {
     }
 
     @Override
+    public Result deleteWeixin(List<String> ids2, String userTel) {
+        for (String s : ids2) {
+            deleteByGoodsId(Integer.valueOf(s),userTel);
+        }
+        return new DefaultResult(ResultCode.SUCCESS);
+    }
+
+    @Override
     public Shop selectByGoodsIdAndUserTel(Integer goodsId,String userTel) {
         Shop shop = shopMapper.selectByGoodsIdAndUserTel(goodsId,userTel);
         if(shop!=null){

@@ -97,4 +97,46 @@ public class GoodsServiceImpl implements IGoodsService {
         }
         return null;
     }
+
+    @Override
+    public ResultData selectPcGoodsBy(String brandLogoname) {
+        List list = goodsMapper.selectPcGoodsBy(brandLogoname);
+        if(list!=null&&list.size()>0){
+            return new DefaultResultData(list);
+        }
+        return null;
+    }
+
+    @Override
+    public Result meRentGoods(Goods goods) {
+        if(goods==null){
+            return new DefaultResult(ResultCode.FAIL);
+        }
+        int i = goodsMapper.insertSelective(goods);
+        if(i>0){
+            return new DefaultResult(ResultCode.SUCCESS);
+        }
+        return new DefaultResult(ResultCode.FAIL);
+    }
+
+    @Override
+    public Goods selectBySource(String goodsSource) {
+        if(goodsSource==null){
+            return null;
+        }
+        Goods goods = goodsMapper.selectByUserTel(goodsSource);
+        if(goods!=null){
+            return goods;
+        }
+        return null;
+    }
+
+    @Override
+    public ResultData selectGoodsAll() {
+        List<Goods> goods = goodsMapper.selectAll2();
+        if(goods!=null&&goods.size()>0){
+            return new DefaultResultData(goods);
+        }
+        return null;
+    }
 }

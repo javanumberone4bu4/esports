@@ -118,5 +118,8 @@
     </if>
   </where>
   </select>
+    <select id="selectToOrders" resultMap="BaseResultMap">
+      select * from brand where brand_type=#{brandType} and brand_name=#{brandName}
+    </select>
 
 </mapper>

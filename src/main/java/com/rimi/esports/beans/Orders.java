@@ -4,12 +4,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
+
 import lombok.Data;
 
 /**
  * ${Description}
  * @author Wang Xiaoping
- * @date 2019/11/6 14:29
+ * @date 2019/11/13 16:02
  */
 @ApiModel(value="com.rimi.esports.Orders")
 @Data
@@ -104,5 +106,8 @@ public class Orders implements Serializable {
     @ApiModelProperty(value="发货时间")
     private String ordersGettime;
 
+    @ApiModelProperty(value="null")
+    private Integer goodsid;
+    private List<Goods> list;
     private static final long serialVersionUID = 1L;
 }

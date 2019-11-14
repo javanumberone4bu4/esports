@@ -19,4 +19,7 @@ public class GoodsVo {
     private String goodsLocation;
     private String nickName;
     private double goodsPricesum;
+    private String brandName;
+    private String goodsName;
+    private String way;
 }

@@ -43,4 +43,6 @@ public interface IBrandService {
     ResultData selectByParam();
 
     ResultData selectByCondition(String brandType,String brandName);
+
+    Brand selectToOrders(String brandType,String brandName);
 }

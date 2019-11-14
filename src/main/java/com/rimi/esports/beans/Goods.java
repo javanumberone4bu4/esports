@@ -14,6 +14,7 @@ import lombok.Data;
 @Data
 public class Goods implements Serializable {
     private Brand brand;
+    private Shop shop;
     /**
     * ID
     */

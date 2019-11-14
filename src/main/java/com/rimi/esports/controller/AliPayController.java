@@ -1,91 +1,174 @@
-//package com.rimi.esports.controller;
-//
-//import com.alipay.api.AlipayApiException;
-//import com.alipay.api.AlipayClient;
-//import com.alipay.api.DefaultAlipayClient;
-//import com.alipay.api.request.AlipayTradePagePayRequest;
-//import com.alipay.api.response.AlipayTradePagePayResponse;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.CrossOrigin;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import java.io.IOException;
-//
-///**
-// * 沙箱支付
-// *
-// * @author Wang Xiaoping
-// * @date 2019/11/7 19:15
-// */
-//@RestController
-//@CrossOrigin
-//public class AliPayController {
-//
-//        public VideoTableService videoTableMapper;
-//
-//        //@PostMapping("/purchase")
-//        @GetMapping("/purchase")
-//        public void payment(HttpServletRequest request, HttpServletResponse response, String videoId) throws IOException {
-//
-//            //生成订单
-//            String orderForm =new AcquireOrderForm().getOrderForm();
-//            String orderForm1 =new AcquireOrderForm().getOrderForm();
-//            AlipayClient alipayClient = new DefaultAlipayClient(
-//                    "https://openapi.alipaydev.com/gateway.do",
-//                    "2016101600699685",
-//                    "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9DqwwbKxNNZfT1+Pn8srveu36cA5WJ3WCAqPRlHnBjzIGbqkKNuKSQ0oHKufEEWur5LlB6MJ8/e+4bPMRvi2Pewa/1iVswdVTuuabpiyR914l9uzmWYsOsokuR1rvYVZqlw3ZBboUXg3z+qpNIy4jwLK9MpDbnHSC3je2rFfP1ahhaxDG7t5ZKp+SenhmzHBoaAt+6evNQxp6tBQAedz+mE+W42fAd535P0GrERqbB01hNbh1q+eKHXELU4yls4GDjROr4yBctPqBVs9d9tl8dLdlt8b/1VXk5PiortcX5GlzgcU8I5TJQLc8hJYcFokEAlRB4luVkc/VrhnTJFLDAgMBAAECggEBAJz6nu0CfzsI4g2LuHhy+CBLUWjePHk7AG44ZO/zufmHPgFrRz7s/cp2xvQWoyUBVgb/vvfEHiGM9MyM4nN8FvaJL7yAQskAVXLVwP/CxkVZQbqCQoiuFzHX+uILa61ShF+zF1N5Vt3sjudj3p54NKqJKaDBaNiBG5lCjL5Icg1mKo7ZlViymxozNUF4z7RGBmxO7SJzgn+UUf44lV9Xsq5jWox6Yu8u8aEjLlWbfsotM5llf69/nbSVoRgKKKYUN8iboHjf8q2K0mDZnd9/RjgnfBbmtAgYGnpCC7mxdHXanFP4t5745c8VpmTr+OrLsxFWHk0ayu3siP7LNSM1lYkCgYEA9TwVfOuPEuOW3lByi2O9Vu9lzaCdeJ2WRwaVIb9FqtiVM4xEbmHu7wa23DaV8lYrLYqpTtkpF+IdtwyGGmRD5HysHxc/Qv5T65lixjYUKgEg3XpSCfFUTLYFzGdQ/3LErXYlbS79v+esdU7ELrnY+TAfN3UEX2eo107BD+YT3b8CgYEAxVtGP+ovFN4rPVL+qEVLLlSauBBNsmTwdp0640Hj8XZgoPv4xR1cDH6HEA+/DeD3Zs+MQJC9NylqbcfbxwTCVOsgHwRK6nHTJ5sUF8pq45JaMkQ9wFYqbMm0o+6erFNJId7S/IdKazcnqdBFojCjkqx2m2BJ8kv0ds0knfUzE/0CgYB2ByL4ao8DslHMUb+vYqOgEbxXiTQA9yd6q6pfAaXQIkk89AeDcNMEa6Dav9LPPbWuR4xRDKeAfS18CiUI0rTyZSaaGCA0aB+PxtUJPMHbrYtZzSNq8aF3AiwsQpVzPJN4QOKmd/VcxW31T6GQM5Y/6G89y639FPDoH1lAA6YQFQKBgQCBWDjKWulQe+tK3cIY9pE3ZCuixsylRpJyqsmVd/G0pyjdWUbJqVxSs/pBBJDqv65lq1D4X+Qi6vndyUa5QN08Wn1K1r1iugbxxil9DiTP0XNbzm3KSK61bdz+M726ozsi/6634tNbQWK1YNLCYa5SysVRP+I28qDd28VL4RAA4QKBgEYdRd84UyVtO/guxKT4CXHG1eh8YCGkzyJUBBejHvSbAthezVdac8UQW+M3SiF92gWaV2XzRAc99qvqxCJQ67KEJmCo/U1CK7UaFSCUcJ62FpyGr9hIP+ww4xBE6UMTDzJ2gr+d7MMFopnNKgHQGPO1Q8UfggydqvL9S36NCqIx",
-//                    "json",
-//                    "UTF-8",
-//                    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAroGobEc+dZ5/+UkfmK4xgyeUkjisL6uOi+qGGBj4Ga2UaUeEuau9okKHDgvUxugiXYH5lLorhZbNtHN52sm8IcXdYOhBXLtE4oJBnqmDQ4zsa5ch8uEMBuomb51kmRB20f6jjVuqdzgoM4wcPthnyBOInrXhC2vgYWmWT2K2fo38fFHWd2dMLWxJ6w+HZxIItq/rF6pnLQOSs5p/1sj3b3uCMQpU5fYsSD55RTHYwtCoCMucCzadTvDqJ4qLlv+UBHSRon4bkZQqHlu+XOQDwzvyvo58XAjuS/33EsHlhpTW/Hp/USD+WjZ9UIwXhiFlYCW1pqE2Q/w2ukTQIFvddQIDAQAB",
-//                    "RSA2");
-//
-//
-//            //获得初始化的AlipayClient
-//
-//            //获取当前请求过来的地址
-//            String urls=request.getRequestURL().toString();
-//            AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
-//            alipayRequest.setReturnUrl("https://www.baidu.com/?tn=44004473_2_oem_dg");
-//            alipayRequest.setNotifyUrl("https://www.baidu.com/?tn=44004473_2_oem_dg");//在公共参数中设置回跳和通知地址
-//
-//
-//
-//            alipayRequest.setBizContent("{" +
-//                    "    \"out_trade_no\":\""+orderForm+"\"," +
-//                    "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
-//                    "    \"total_amount\":8888," +
-//                    "    \"subject\":\""+videoId+"\"," +
-//                    "    \"body\":\""+videoId+"\"," +
-//                    "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
-//                    "    \"extend_params\":{" +
-//                    "    \"sys_service_provider_id\":\""+orderForm1+"\"" +
-//                    "    }"+
-//                    "  }");//填充业务参数
-//            String form="";
-//            try {
-//                form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
-//                AlipayTradePagePayResponse responses = alipayClient.pageExecute(alipayRequest);
-//                if(responses.isSuccess()){
-//                    System.out.println("调用成功");
-//                } else {
-//                    System.out.println("调用失败");
-//                }
-//            } catch (AlipayApiException e) {
-//                e.printStackTrace();
-//            }
-//
-//            //{    "out_trade_no":"4f59245f5bdf561f0f52",    "product_code":"FAST_INSTANT_TRADE_PAY",    "total_amount":8888,    "subject":"Iphone32 160G",    "body":"Iphone32 160G",    "passback_params":"merchantBizType%3d3C%26merchantBizNo%3d2016010101111",    "extend_params":{    "sys_service_provider_id":"92e7844abdd75710b6dd",    }  }
-//            response.setContentType("text/html;charset=" +  "UTF-8");
-//            response.getWriter().write(form);//直接将完整的表单html输出到页面
-//            response.getWriter().flush();
-//            response.getWriter().close();
-//
-//
-//
-//        }
-//
-//
-//}
+package com.rimi.esports.controller;
+
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.alipay.api.response.AlipayTradePagePayResponse;
+import com.rimi.esports.beans.Orders;
+import com.rimi.esports.beans.Sm;
+import com.rimi.esports.mapper.OrdersMapper;
+import com.rimi.esports.mapper.ShopMapper;
+import com.rimi.esports.mapper.SmMapper;
+import com.rimi.esports.service.IOrdersService;
+import com.rimi.esports.vo.AcquireOrderForm;
+import com.rimi.esports.vo.AliPayVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * 沙箱支付
+ *
+ * @author Wang Xiaoping
+ * @date 2019/11/7 19:15
+ */
+@RestController
+@CrossOrigin
+public class AliPayController {
+    @Autowired
+    private IOrdersService ordersService;
+    @Autowired
+    private ShopMapper shopMapper;
+    @Autowired
+    private OrdersMapper mapper;
+    @Autowired
+    private SmMapper smMapper;
+        @PostMapping("/purchase")
+       // @GetMapping("/purchase")
+        public void payment( AliPayVo vo, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+            //生成订单
+           // String orderForm =new AcquireOrderForm().getOrderForm("543534546954645");
+            String orderForm1 =new AcquireOrderForm().getOrderForm("423423432543");
+            AlipayClient alipayClient = new DefaultAlipayClient(
+                    "https://openapi.alipaydev.com/gateway.do",
+                    "2016101600699685",
+                    "MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCj3FNoJq5xK0PBDlrp5PBbG2+qOMnederOFrXTC/qZ2vJl/C0bsCBFrv6G+Sa/5SkqcCWvFxKs5DL0ZJoPOW5nDKpjn+5pVfOx73KNfP68L1eQbJPoDkWbfpJLAtFAGjBbjVWI7Bk88uyhO2elPmO5/1rW//qrAGLVdf6ifKTIOveHLIPAy0Vx3enuzEU468oTqo7W6wdoLU3IxVOf5YzChA56dl/oZifaSOoAAIjEXQJpMgJUA2qccXFjq7ooQlcH2PhHBp009sRlBqndJyirALnsSHcwKy5bV3h/sA8EiKDpdGeVNDBMfsUrfi2GY6G1b22rpbF/5WlDpTNchwknAgMBAAECggEBAIe5m6yNPbinaXujdFKAO0Z7t0Z7u1n0ugTycrDZHz4JSPaIpqRkgpa1mEYcYahZHHv2YIBi0Ck866fbHHC31Wat6wSSGFxPwYcFGxFvE2C0pgcOqIRyLd3aPTq8nq5GAwASVWMQjOcbID18gyEwSFJr3MZxSSQTMco17jCQpbzjJI69d8g5Esw8V//TGT4dmz7e1CWbpBAXnvOTQCBkaAhg2VTzneSJvXpwfA6i+5pC47CPQGwG2DP8SizXwwuVqjBDpJFx80wBBraOsR7KUPb7oA83cZXBXdxI2j+uDuOUdd8MHDXNS2+gdw0A4tPjRhxuWDM1iwDgJYJLvopHw4ECgYEA6fTBhekJOBItTWMTOunxiBKznr7Xsvb7VkscQW4YFY6518gIngzHr4XOlwV1/Ag15u5axxRM2p288MSLnbqj+Mf2UGgJEoaX+HmVuZADEAgSdINnrqTRc3dwPbu38jWrdkqX3zBCb572dh7H8vYxmN5cWMAP8W2gyeUysSoicRcCgYEAs0zNFw5AWYVFQbwhp1MdOYzxVwgPqZNXDrJzH0TQk36GIFW/JBSqLMehvNPMscI3E2PQJyS9zhmVZ58sQoRnFsjYsRcd9wtPfDjocSvn3YyOOK6epK2+e7Bay7se4mEZTBslN+TG42upI1EJYYg5m7vLn3LF9KIbsiB5VVRMknECgYEA2FI0IhJgMNU1yClEnaO0bYIFTVHedZ7CtH6MqL8YS86FbcyKk0Dz3gqWA7PL7PbWiCl6DDtr+HQDQIgrI/NwK9cQnDYltVh36grZ8xMCke80yUC7PJMvC1mzkZEhuzX+zUiZdofT1gugjYVWkgMrxtJLhtBHrY8VLbjcD04LPI8CgYBBpwSNxaUgYmEqobV87D0OPqJ8KLJ7eDzvX74xm+P3reN04ZDcqEhrnymE19Ti3eeGzQyB2L07QzjmuWzealbJC//0UC+jrtuK89eA4P/EqtvEu4PRbuEJr1h/suOrJry5llL5dWayDVDgYqLZuKTHdmsn1kHPwq/7eFKVQQnMsQKBgQDVPfUEEUwk3PBh0wZ8EnhMbSjg3ooVrzbcowvzIJkpZjGDoM0sFj/pf4k6lGrZrTtcm57gUdfP5Ov6J/YJjYUCIcaDiGaRBsZ2HiGM6G8iU7Wg6dP7PMOE13mrHuxchP66FQwShw/EETJ+HJT65J5Hwh/jQ1yX8ra18Eiy0nqlZg==",
+                    "json",
+                    "UTF-8",
+                    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp0vMtaYwqkKYvNhCp6Lc1+S40KpeBnNSQBqPGgAZhSLoNKP06S8xxjFOIzujkOvPa8k6V2X2nO0VmX2I29tJ+4lJL8Boqkmw6NYQZq6xC1VoeSA1l/vJGYvDz4IDhPY3mCcJeNjaph+afep9ZGW/P5bXGXK+AgmqYgLJBEc6IZdbc+RBeqUFalDWzUiySITHxH50Df1FBTy6TYx8/ezWJy0hPtTQfB3HOmiDsjjSy590vvfXneY0uHWmSFh2p3FMjsNX/vPAquHFHKgdpLVlJ9cpOlIZpxoNUNv6tDEd4DBgP/wsoQxNdHGfCbUhB/SLaN4slNf4YO3IVfzG97poTQIDAQAB",
+                    "RSA2");
+
+
+            //获得初始化的AlipayClient
+
+            //获取当前请求过来的地址
+            String urls=request.getRequestURL().toString();
+            AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
+            alipayRequest.setReturnUrl("http://10.2.3.48:8080/paySuccess");//http://10.2.3.48:8080/paySuccess
+            alipayRequest.setNotifyUrl("http://10.2.3.48:8080/paySuccess");//在公共参数中设置回跳和通知地址
+
+
+
+            alipayRequest.setBizContent("{" +
+                    "    \"out_trade_no\":\""+vo.getOrdersNum()+"\"," +
+                    "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
+                    "    \"total_amount\":"+vo.getGoodsPricesum()+"," +
+                    "    \"subject\":\""+vo.getOrdersNum()+"\"," +
+                    "    \"body\":\""+vo.getOrdersNum()+"\"," +
+                    "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
+                    "    \"extend_params\":{" +
+                    "    \"sys_service_provider_id\":\""+orderForm1+"\"" +
+                    "    }"+
+                    "  }");//填充业务参数
+            String form="";
+            try {
+                form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
+                AlipayTradePagePayResponse responses = alipayClient.pageExecute(alipayRequest);
+                if(responses.isSuccess()){
+                    System.out.println("调用成功");
+                    List<Orders> orders = ordersService.selectByUserTelAndNum(vo.getUserTel(), vo.getOrdersNum());
+                    if(orders==null||orders.size()==0){
+                        Orders orders1=new Orders();
+                        orders1.setUserTel(vo.getUserTel());
+                        orders1.setOrdersNum(vo.getOrdersNum());
+                        orders1.setOrdersGetname(vo.getOrdersGetname());
+                        orders1.setOrdersGetaddress(vo.getOrdersGetaddress());
+                        orders1.setOrdersGetmethod(vo.getOrdersGetmethod());
+                        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date date=new Date();
+                        String format = simpleDateFormat.format(date);
+                        orders1.setOrdersTime(format);
+                        orders1.setOrdersGetscore(Integer.parseInt(vo.getOrdersGetscore()));
+                        orders1.setOrdersPay("已支付");
+                        orders1.setOrdersStatus("我借的");
+                        orders1.setOrdersMoney( BigDecimal.valueOf(Double.valueOf(vo.getGoodsPricesum())));
+                        int i = ordersService.insertOrders(orders1);
+                        Sm sm = smMapper.selectByTelephone(vo.getUserTel());
+                        sm.setSmMark(sm.getSmMark()+Integer.parseInt(vo.getOrdersGetscore()));
+                        int i2 = smMapper.updateByPrimaryKeySelective(sm);
+                        for (int j = 0; j < vo.getIds().length; j++) {
+                            int i1 = shopMapper.deleteByGoods(Integer.parseInt(vo.getIds()[j]), vo.getUserTel());
+                        }
+                       // return   ordersService.selectOrdersGoods(vo.getUserTel(),vo.getOrdersNum());
+
+                    }
+                    if(orders.size()==1) {
+                        orders.get(0).setOrdersGetname(vo.getOrdersGetname());
+                        orders.get(0).setOrdersGetaddress(vo.getOrdersGetaddress());
+                        orders.get(0).setOrdersGetmethod(vo.getOrdersGetmethod());
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date date = new Date();
+                        String format = simpleDateFormat.format(date);
+                        orders.get(0).setOrdersTime(format);
+                        orders.get(0).setOrdersGetscore(Integer.parseInt(vo.getOrdersGetscore()));
+                        orders.get(0).setOrdersPay("已支付");
+                        orders.get(0).setOrdersStatus("我借的");
+                        orders.get(0).setOrdersMoney( BigDecimal.valueOf(Double.valueOf(vo.getGoodsPricesum())));
+                        int i = mapper.updateByPrimaryKeySelective(orders.get(0));
+                        Sm sm = smMapper.selectByTelephone(vo.getUserTel());
+                        sm.setSmMark(sm.getSmMark()+Integer.parseInt(vo.getOrdersGetscore()));
+                        int i2 = smMapper.updateByPrimaryKeySelective(sm);
+                        for (int j = 0; j < vo.getIds().length; j++) {
+                            int i1 = shopMapper.deleteByGoods(Integer.parseInt(vo.getIds()[j]), vo.getUserTel());
+                        }
+                        //return ordersService.selectOrdersGoods(vo.getUserTel(),vo.getOrdersNum());
+                    }else{
+                        for (Orders order : orders) {
+                            order.setOrdersGetname(vo.getOrdersGetname());
+                            order.setOrdersGetaddress(vo.getOrdersGetaddress());
+                            order.setOrdersGetmethod(vo.getOrdersGetmethod());
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            Date date = new Date();
+                            String format = simpleDateFormat.format(date);
+                            order.setOrdersTime(format);
+                            order.setOrdersGetscore(Integer.parseInt(vo.getOrdersGetscore()));
+                            order.setOrdersPay("已支付");
+                            order.setOrdersStatus("我借的");
+                            order.setOrdersMoney( BigDecimal.valueOf(Double.valueOf(vo.getGoodsPricesum())));
+                            int i = mapper.updateByPrimaryKeySelective(order);
+                            Sm sm = smMapper.selectByTelephone(vo.getUserTel());
+                            sm.setSmMark(sm.getSmMark()+Integer.parseInt(vo.getOrdersGetscore()));
+                            int i2 = smMapper.updateByPrimaryKeySelective(sm);
+                            for (int j = 0; j < vo.getIds().length; j++) {
+                                int i1 = shopMapper.deleteByGoods(Integer.parseInt(vo.getIds()[j]), vo.getUserTel());
+                            }
+                        }
+                    }
+
+                } else {
+                    System.out.println("调用失败");
+                }
+            } catch (AlipayApiException e) {
+                e.printStackTrace();
+            }
+
+            //{    "out_trade_no":"4f59245f5bdf561f0f52",    "product_code":"FAST_INSTANT_TRADE_PAY",    "total_amount":8888,    "subject":"Iphone32 160G",    "body":"Iphone32 160G",    "passback_params":"merchantBizType%3d3C%26merchantBizNo%3d2016010101111",    "extend_params":{    "sys_service_provider_id":"92e7844abdd75710b6dd",    }  }
+            response.setContentType("text/html;charset=" +  "UTF-8");
+            response.getWriter().write(form);//直接将完整的表单html输出到页面
+            response.getWriter().flush();
+            response.getWriter().close();
+
+
+        }
+
+
+}

@@ -34,4 +34,6 @@ public interface BrandMapper {
     List<Brand> selectByParam();
 
     List<Brand> selectByCondition(@Param("brandType") String brandType,@Param("brandName")String brandName);
+
+    Brand selectToOrders(@Param("brandType")String brandType,@Param("brandName")String brandName);
 }
