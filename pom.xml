@@ -30,7 +30,7 @@
         <aliyun-sdk.version>1.1.0</aliyun-sdk.version>
         <aliyun-java-sdk-dysmsapi.version>1.1.0</aliyun-java-sdk-dysmsapi.version>
         <jsoup.version>1.12.1</jsoup.version>
-        <fastjson.version>1.2.61</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <javaee.version>8.0.1</javaee.version>
         <aliyuncs.version>1.0.1</aliyuncs.version>
         <alipay.version>4.8.10.ALL</alipay.version>
