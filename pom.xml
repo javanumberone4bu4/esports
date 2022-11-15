@@ -23,7 +23,7 @@
         <servlet.version>4.0.1</servlet.version>
         <fileUpload.version>1.4</fileUpload.version>
         <fastdfs.version>1.27-SNAPSHOT</fastdfs.version>
-        <jackson.version>2.10.0</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <springfoxswagger.version>2.9.2</springfoxswagger.version>
         <pagehelper.version>5.1.10</pagehelper.version>
         <aliyun.version>4.0.3</aliyun.version>
